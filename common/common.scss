@@ -1,0 +1,567 @@
+/* Krewebacchus Discourse Theme
+ * Cyberpunk/sci-fi styling to match the main webapp
+ * Primary: Neon Green #39FF14 (dark) / #23B00D (light)
+ * Supports both light and dark modes
+ */
+
+/* ==================== 
+   CSS Variables - Light Mode (default)
+   ==================== */
+:root {
+  /* Brand Colors - Light Mode */
+  --krew-primary: #23B00D;
+  --krew-primary-hover: #1A8A0A;
+  --krew-primary-glow: rgba(35, 176, 13, 0.2);
+  
+  /* Surface Colors - Light Mode */
+  --krew-bg: #F8FAFF;
+  --krew-bg-secondary: #F0F5FF;
+  --krew-surface: #FFFFFF;
+  --krew-surface-hover: #E5EEFF;
+  --krew-border-color: rgba(35, 176, 13, 0.3);
+  --krew-text: #121B29;
+  --krew-text-muted: #4060B0;
+  
+  /* Accent Colors */
+  --krew-danger: #E03655;
+  --krew-warning: #E09A12;
+  --krew-info: #12B8E9;
+  --krew-success: #12E975;
+  
+  /* Typography */
+  --krew-font-mono: "Courier New", Courier, monospace;
+  
+  /* Effects */
+  --krew-glow: 0 0 10px var(--krew-primary-glow);
+  --krew-glow-strong: 0 0 15px var(--krew-primary-glow), 0 0 30px rgba(35, 176, 13, 0.1);
+  --krew-border: 1px solid var(--krew-border-color);
+  --krew-border-radius: 0 8px 0 8px;
+  --krew-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ==================== 
+   CSS Variables - Dark Mode
+   ==================== */
+html.dark-theme {
+  /* Brand Colors - Dark Mode (brighter neon) */
+  --krew-primary: #39FF14;
+  --krew-primary-hover: #65FF3C;
+  --krew-primary-glow: rgba(57, 255, 20, 0.3);
+  
+  /* Surface Colors - Dark Mode */
+  --krew-bg: #0A1018;
+  --krew-bg-secondary: #121B29;
+  --krew-surface: #121B29;
+  --krew-surface-hover: #202850;
+  --krew-border-color: rgba(57, 255, 20, 0.3);
+  --krew-text: #F8FAFF;
+  --krew-text-muted: #A0C0FF;
+  
+  /* Accent Colors - Brighter for dark mode */
+  --krew-danger: #FF3E5E;
+  --krew-warning: #FFB114;
+  --krew-info: #14CFFF;
+  --krew-success: #14FF83;
+  
+  /* Effects - Stronger glow in dark mode */
+  --krew-glow: 0 0 10px var(--krew-primary-glow);
+  --krew-glow-strong: 0 0 15px var(--krew-primary-glow), 0 0 30px rgba(57, 255, 20, 0.15);
+  --krew-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ==================== 
+   Global Styles
+   ==================== */
+
+body {
+  background-color: var(--krew-bg) !important;
+  color: var(--krew-text);
+}
+
+/* Main content area */
+#main-outlet {
+  background-color: var(--krew-bg);
+}
+
+/* ==================== 
+   Header
+   ==================== */
+.d-header-wrap {
+  background: linear-gradient(180deg, var(--krew-bg) 0%, var(--krew-bg-secondary) 100%);
+  border-bottom: var(--krew-border);
+  box-shadow: var(--krew-shadow);
+}
+
+html.dark-theme .d-header-wrap {
+  box-shadow: var(--krew-glow);
+}
+
+.d-header {
+  background: transparent;
+}
+
+/* Logo glow effect */
+.d-header .logo-big,
+.d-header .logo-small {
+  filter: drop-shadow(0 0 8px var(--krew-primary-glow));
+}
+
+/* Header icons */
+.d-header-icons .icon {
+  color: var(--krew-primary);
+  transition: all 0.3s ease;
+}
+
+.d-header-icons .icon:hover {
+  color: var(--krew-primary);
+  filter: drop-shadow(0 0 8px var(--krew-primary-glow));
+}
+
+/* ==================== 
+   Navigation & Sidebar
+   ==================== */
+.sidebar-wrapper {
+  background-color: var(--krew-bg-secondary);
+  border-right: var(--krew-border);
+}
+
+.sidebar-section-header-wrapper {
+  color: var(--krew-primary);
+  font-family: var(--krew-font-mono);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.sidebar-section-link {
+  border-radius: var(--krew-border-radius);
+  transition: all 0.2s ease;
+}
+
+.sidebar-section-link:hover,
+.sidebar-section-link.active {
+  background-color: var(--krew-surface-hover);
+}
+
+html.dark-theme .sidebar-section-link:hover,
+html.dark-theme .sidebar-section-link.active {
+  box-shadow: inset 0 0 10px var(--krew-primary-glow);
+}
+
+.sidebar-section-link.active {
+  border-left: 2px solid var(--krew-primary);
+}
+
+/* ==================== 
+   Topic List
+   ==================== */
+.topic-list {
+  background-color: transparent;
+}
+
+.topic-list-item {
+  background-color: var(--krew-surface);
+  border: var(--krew-border);
+  border-radius: var(--krew-border-radius);
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+  box-shadow: var(--krew-shadow);
+}
+
+.topic-list-item:hover {
+  border-color: var(--krew-primary);
+}
+
+html.dark-theme .topic-list-item:hover {
+  box-shadow: var(--krew-glow);
+}
+
+.topic-list th {
+  color: var(--krew-primary);
+  font-family: var(--krew-font-mono);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  border-bottom: var(--krew-border);
+}
+
+/* Topic titles */
+.topic-list-item .title {
+  color: var(--krew-text);
+}
+
+.topic-list-item .title:hover {
+  color: var(--krew-primary);
+}
+
+/* Pinned topics */
+.topic-list-item.pinned .title::before {
+  color: var(--krew-warning);
+}
+
+/* ==================== 
+   Topic View
+   ==================== */
+.topic-body {
+  background-color: var(--krew-surface);
+  border: var(--krew-border);
+  border-radius: var(--krew-border-radius);
+}
+
+.topic-post {
+  border-bottom: 1px solid var(--krew-border-color);
+}
+
+/* Post content */
+.cooked {
+  color: var(--krew-text);
+}
+
+.cooked a {
+  color: var(--krew-info);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.cooked a:hover {
+  color: var(--krew-primary);
+  border-bottom-color: var(--krew-primary);
+}
+
+/* Code blocks */
+.cooked pre,
+.cooked code {
+  background-color: var(--krew-bg-secondary);
+  border: var(--krew-border);
+  border-radius: var(--krew-border-radius);
+  font-family: var(--krew-font-mono);
+}
+
+.cooked pre code {
+  color: var(--krew-primary);
+}
+
+/* Blockquotes */
+.cooked blockquote {
+  background-color: rgba(20, 207, 255, 0.05);
+  border-left: 3px solid var(--krew-info);
+  padding-left: 1rem;
+}
+
+/* ==================== 
+   Buttons
+   ==================== */
+.btn-primary,
+.btn.btn-primary {
+  background: linear-gradient(135deg, var(--krew-primary-dark) 0%, var(--krew-primary) 100%);
+  border: none;
+  color: var(--krew-surface-950);
+  font-weight: 600;
+  border-radius: var(--krew-border-radius);
+  transition: all 0.3s ease;
+  text-shadow: none;
+}
+
+.btn-primary:hover,
+.btn.btn-primary:hover {
+  box-shadow: var(--krew-glow-strong);
+  transform: translateY(-1px);
+}
+
+.btn-default,
+.btn.btn-default {
+  background-color: var(--krew-surface-800);
+  border: var(--krew-border);
+  color: var(--krew-primary);
+  border-radius: var(--krew-border-radius);
+  transition: all 0.2s ease;
+}
+
+.btn-default:hover,
+.btn.btn-default:hover {
+  background-color: var(--krew-surface-hover);
+}
+
+html.dark-theme .btn-default:hover,
+html.dark-theme .btn.btn-default:hover {
+  box-shadow: var(--krew-glow);
+}
+
+.btn-danger,
+.btn.btn-danger {
+  background-color: var(--krew-danger);
+  border: none;
+  border-radius: var(--krew-border-radius);
+}
+
+/* ==================== 
+   Forms & Inputs
+   ==================== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+textarea,
+select,
+.select-kit .select-kit-header {
+  background-color: var(--krew-surface);
+  border: var(--krew-border);
+  border-radius: var(--krew-border-radius);
+  color: var(--krew-text);
+  transition: all 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.select-kit.is-expanded .select-kit-header {
+  border-color: var(--krew-primary);
+  outline: none;
+}
+
+html.dark-theme input:focus,
+html.dark-theme textarea:focus,
+html.dark-theme select:focus,
+html.dark-theme .select-kit.is-expanded .select-kit-header {
+  box-shadow: var(--krew-glow);
+}
+
+/* Search */
+.search-container .search-input {
+  background-color: var(--krew-surface);
+  border: var(--krew-border);
+}
+
+/* ==================== 
+   Categories
+   ==================== */
+.category-list {
+  background-color: transparent;
+}
+
+.category-list-item {
+  background-color: var(--krew-surface);
+  border: var(--krew-border);
+  border-radius: var(--krew-border-radius);
+  margin-bottom: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.category-list-item:hover {
+  border-color: var(--krew-primary);
+}
+
+html.dark-theme .category-list-item:hover {
+  box-shadow: var(--krew-glow);
+}
+
+/* Category badges */
+.badge-category__wrapper {
+  font-family: var(--krew-font-mono);
+}
+
+/* ==================== 
+   User Cards & Profiles
+   ==================== */
+.user-card,
+.user-card-large {
+  background-color: var(--krew-surface);
+  border: var(--krew-border);
+  border-radius: var(--krew-border-radius);
+  box-shadow: var(--krew-shadow);
+}
+
+html.dark-theme .user-card,
+html.dark-theme .user-card-large {
+  box-shadow: var(--krew-glow);
+}
+
+.user-card h1,
+.user-card h2 {
+  color: var(--krew-primary);
+}
+
+/* Avatar glow for admins/captains */
+.user-card.admin .avatar-flair,
+.user-card.moderator .avatar-flair {
+  box-shadow: var(--krew-glow-strong);
+}
+
+/* ==================== 
+   Notifications & Badges
+   ==================== */
+.badge-notification {
+  background-color: var(--krew-primary);
+  color: white;
+  font-weight: 600;
+}
+
+html.dark-theme .badge-notification {
+  color: var(--krew-bg);
+}
+
+.badge-notification.unread-posts,
+.badge-notification.new-posts {
+  background-color: var(--krew-info);
+}
+
+/* User badges */
+.user-badge {
+  background-color: var(--krew-surface-hover);
+  border: var(--krew-border);
+  border-radius: var(--krew-border-radius);
+}
+
+/* ==================== 
+   Modals & Popups
+   ==================== */
+.modal-inner-container,
+.d-modal__container {
+  background-color: var(--krew-surface);
+  border: var(--krew-border);
+  border-radius: 8px;
+  box-shadow: var(--krew-shadow);
+}
+
+html.dark-theme .modal-inner-container,
+html.dark-theme .d-modal__container {
+  box-shadow: var(--krew-glow-strong);
+}
+
+.modal-header,
+.d-modal__header {
+  border-bottom: var(--krew-border);
+}
+
+.modal-header h3,
+.d-modal__title {
+  color: var(--krew-primary);
+  font-family: var(--krew-font-mono);
+}
+
+/* ==================== 
+   Chat
+   ==================== */
+.chat-channel {
+  background-color: var(--krew-surface);
+  border: var(--krew-border);
+}
+
+.chat-message {
+  border-bottom: 1px solid var(--krew-border-color);
+}
+
+.chat-message:hover {
+  background-color: var(--krew-surface-hover);
+}
+
+.chat-composer-input {
+  background-color: var(--krew-bg-secondary);
+  border: var(--krew-border);
+}
+
+/* ==================== 
+   Loading & Animations
+   ==================== */
+.spinner {
+  border-color: var(--krew-primary);
+  border-right-color: transparent;
+}
+
+/* Page loading bar */
+#discourse-loading-spinner {
+  background-color: var(--krew-primary);
+  box-shadow: var(--krew-glow-strong);
+}
+
+/* Subtle scan line effect for sci-fi feel - dark mode only */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+html.dark-theme body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--krew-primary-glow), transparent);
+  pointer-events: none;
+  animation: scanline 6s linear infinite;
+  opacity: 0.3;
+  z-index: 9999;
+}
+
+/* ==================== 
+   Scrollbars
+   ==================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--krew-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--krew-surface-hover);
+  border: 1px solid var(--krew-border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--krew-primary);
+  border-color: var(--krew-primary);
+}
+
+/* ==================== 
+   Groups (SubKrewes)
+   ==================== */
+.group-box {
+  background-color: var(--krew-surface);
+  border: var(--krew-border);
+  border-radius: var(--krew-border-radius);
+}
+
+.group-box:hover {
+  border-color: var(--krew-primary);
+}
+
+html.dark-theme .group-box:hover {
+  box-shadow: var(--krew-glow);
+}
+
+/* ==================== 
+   Footer
+   ==================== */
+.custom-footer,
+footer {
+  background-color: var(--krew-bg);
+  border-top: var(--krew-border);
+}
+
+/* ==================== 
+   Responsive Adjustments
+   ==================== */
+@media (max-width: 768px) {
+  .topic-list-item {
+    border-radius: 4px;
+  }
+}
+
+html.dark-theme body::after {
+  /* Disable scanline on mobile for performance */
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+  }
+}

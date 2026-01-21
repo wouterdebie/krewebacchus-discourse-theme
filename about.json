@@ -1,0 +1,32 @@
+{
+  "name": "Krewebacchus Theme",
+  "about_url": "https://krewebacchus.org",
+  "license_url": "https://github.com/wouterdebie/krewebacchus-discourse-theme/blob/main/LICENSE",
+  "component": false,
+  "color_schemes": {
+    "Krewebacchus Dark": {
+      "primary": "39FF14",
+      "secondary": "121B29",
+      "tertiary": "14CFFF",
+      "quaternary": "FFB114",
+      "header_background": "0A1018",
+      "header_primary": "39FF14",
+      "highlight": "304080",
+      "danger": "FF3E5E",
+      "success": "14FF83",
+      "love": "FF3E5E"
+    },
+    "Krewebacchus Light": {
+      "primary": "23B00D",
+      "secondary": "F8FAFF",
+      "tertiary": "12B8E9",
+      "quaternary": "E09A12",
+      "header_background": "FFFFFF",
+      "header_primary": "23B00D",
+      "highlight": "E5EEFF",
+      "danger": "E03655",
+      "success": "12E975",
+      "love": "E03655"
+    }
+  }
+}
