@@ -5,6 +5,25 @@
  */
 
 /* ==================== 
+   Custom Fonts
+   ==================== */
+@font-face {
+  font-family: "Starjedi";
+  src: url("https://krewebacchus.org/fonts/Starjedi.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "VideoPhreak";
+  src: url("https://krewebacchus.org/fonts/VideoPhreak.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==================== 
    CSS Variables - Light Mode (default)
    ==================== */
 :root {
@@ -76,6 +95,27 @@ html.dark-theme {
 body {
   background-color: var(--krew-bg) !important;
   color: var(--krew-text);
+  font-family: var(--krew-font-mono);
+  font-weight: 500;
+}
+
+/* Headings use Starjedi (Star Wars style) */
+h1, h2, h3,
+.topic-title,
+.fancy-title,
+.title-wrapper .topic-link {
+  font-family: "Starjedi", sans-serif;
+  font-weight: 500;
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+}
+
+/* Category/section headers use VideoPhreak */
+.category-name,
+.sidebar-section-header-text,
+.badge-category__name {
+  font-family: "VideoPhreak", sans-serif;
+  letter-spacing: 0.1em;
 }
 
 /* Main content area */
