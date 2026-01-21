@@ -5,10 +5,10 @@
   "component": false,
   "color_schemes": {
     "Krewebacchus Dark": {
-      "primary": "39FF14",
-      "secondary": "121B29",
-      "tertiary": "14CFFF",
-      "quaternary": "FFB114",
+      "primary": "F8FAFF",
+      "secondary": "0A1018",
+      "tertiary": "39FF14",
+      "quaternary": "14CFFF",
       "header_background": "0A1018",
       "header_primary": "39FF14",
       "highlight": "304080",
@@ -17,10 +17,10 @@
       "love": "FF3E5E"
     },
     "Krewebacchus Light": {
-      "primary": "23B00D",
+      "primary": "121B29",
       "secondary": "F8FAFF",
-      "tertiary": "12B8E9",
-      "quaternary": "E09A12",
+      "tertiary": "23B00D",
+      "quaternary": "12B8E9",
       "header_background": "FFFFFF",
       "header_primary": "23B00D",
       "highlight": "E5EEFF",
