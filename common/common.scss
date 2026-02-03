@@ -121,23 +121,41 @@ h1, h2, h3,
 /* ==================== 
    Dark Mode Overrides - Force dark backgrounds
    ==================== */
-html.dark-theme {
+html.dark-theme,
+html[data-color-scheme="dark"],
+body.dark-theme {
   /* Override Discourse's CSS custom properties */
   --secondary: #0A1018 !important;
+  --secondary-rgb: 10, 16, 24 !important;
   --primary: #F8FAFF !important;
+  --primary-rgb: 248, 250, 255 !important;
   --tertiary: #39FF14 !important;
+  --tertiary-rgb: 57, 255, 20 !important;
   --header_background: #0A1018 !important;
   --header_primary: #39FF14 !important;
+  --highlight: #304080 !important;
+  --highlight-bg: rgba(48, 64, 128, 0.5) !important;
+  
+  background-color: #0A1018 !important;
 }
 
 html.dark-theme body,
+html[data-color-scheme="dark"] body,
 html.dark-theme #main-outlet,
+html[data-color-scheme="dark"] #main-outlet,
 html.dark-theme .d-body,
+html.dark-theme .wrap,
+html.dark-theme .ember-application,
 html.dark-theme .topic-body,
 html.dark-theme .user-content-wrapper,
 html.dark-theme .user-main,
 html.dark-theme .user-preferences,
-html.dark-theme .admin-contents {
+html.dark-theme .admin-contents,
+html.dark-theme .container,
+html.dark-theme .list-container,
+html.dark-theme .show-more,
+html.dark-theme .topic-list-item,
+html.dark-theme .latest-topic-list-item {
   background-color: #0A1018 !important;
 }
 
