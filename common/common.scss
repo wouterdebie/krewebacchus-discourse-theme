@@ -30,37 +30,83 @@
    --tertiary = accent color (green)
    
    Override calculated variants that Discourse gets wrong
+   Scheme-specific overrides via media queries
    ==================== */
 :root {
   /* Typography */
   --krew-font-mono: "Courier New", Courier, monospace;
   
-  /* Override Discourse's broken auto-calculated variants */
-  /* Primary variants (light text on dark bg) */
-  --primary-low: rgba(248, 250, 255, 0.1) !important;
-  --primary-low-mid: rgba(248, 250, 255, 0.2) !important;
-  --primary-medium: rgba(248, 250, 255, 0.4) !important;
-  --primary-high: rgba(248, 250, 255, 0.75) !important;
-  --primary-very-high: rgba(248, 250, 255, 0.9) !important;
-  --primary-very-low: rgba(248, 250, 255, 0.05) !important;
+  /* Light mode tertiary (darker green for contrast on light bg) */
+  --krew-tertiary-light: #23B00D;
+  /* Dark mode tertiary (neon green) */
+  --krew-tertiary-dark: #39FF14;
   
-  /* Secondary variants (dark background shades) */
-  --secondary-low: #121B29 !important;
-  --secondary-medium: #1a2636 !important;
-  --secondary-high: #253344 !important;
-  --secondary-very-high: #344455 !important;
-  
-  /* Highlight (for hovers/selections) */
-  --highlight-bg: rgba(57, 255, 20, 0.1) !important;
-  --highlight-low: rgba(57, 255, 20, 0.05) !important;
-  --highlight-medium: rgba(57, 255, 20, 0.2) !important;
-  --highlight-high: rgba(57, 255, 20, 0.4) !important;
-  
-  /* Effects - these adapt based on tertiary color */
-  --krew-glow: 0 0 10px rgba(57, 255, 20, 0.3);
-  --krew-glow-strong: 0 0 15px rgba(57, 255, 20, 0.3), 0 0 30px rgba(57, 255, 20, 0.15);
-  --krew-border: 1px solid rgba(57, 255, 20, 0.3);
+  /* Effects - these use tertiary color */
   --krew-border-radius: 0 8px 0 8px;
+}
+
+/* ==================== 
+   DARK MODE Color Overrides
+   ==================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Primary variants (light text on dark bg) */
+    --primary-low: rgba(248, 250, 255, 0.1) !important;
+    --primary-low-mid: rgba(248, 250, 255, 0.2) !important;
+    --primary-medium: rgba(248, 250, 255, 0.4) !important;
+    --primary-high: rgba(248, 250, 255, 0.75) !important;
+    --primary-very-high: rgba(248, 250, 255, 0.9) !important;
+    --primary-very-low: rgba(248, 250, 255, 0.05) !important;
+    
+    /* Secondary variants (dark background shades) */
+    --secondary-low: #121B29 !important;
+    --secondary-medium: #1a2636 !important;
+    --secondary-high: #253344 !important;
+    --secondary-very-high: #344455 !important;
+    
+    /* Highlight (for hovers/selections) */
+    --highlight-bg: rgba(57, 255, 20, 0.1) !important;
+    --highlight-low: rgba(57, 255, 20, 0.05) !important;
+    --highlight-medium: rgba(57, 255, 20, 0.2) !important;
+    --highlight-high: rgba(57, 255, 20, 0.4) !important;
+    
+    /* Effects */
+    --krew-glow: 0 0 10px rgba(57, 255, 20, 0.3);
+    --krew-glow-strong: 0 0 15px rgba(57, 255, 20, 0.3), 0 0 30px rgba(57, 255, 20, 0.15);
+    --krew-border: 1px solid rgba(57, 255, 20, 0.3);
+  }
+}
+
+/* ==================== 
+   LIGHT MODE Color Overrides
+   ==================== */
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Primary variants (dark text on light bg) */
+    --primary-low: rgba(18, 27, 41, 0.1) !important;
+    --primary-low-mid: rgba(18, 27, 41, 0.2) !important;
+    --primary-medium: rgba(18, 27, 41, 0.4) !important;
+    --primary-high: rgba(18, 27, 41, 0.75) !important;
+    --primary-very-high: rgba(18, 27, 41, 0.9) !important;
+    --primary-very-low: rgba(18, 27, 41, 0.05) !important;
+    
+    /* Secondary variants (light background shades) */
+    --secondary-low: #E8EAEF !important;
+    --secondary-medium: #D8DAE0 !important;
+    --secondary-high: #C8CAD0 !important;
+    --secondary-very-high: #B8BAC0 !important;
+    
+    /* Highlight (for hovers/selections) - darker green for light bg */
+    --highlight-bg: rgba(35, 176, 13, 0.1) !important;
+    --highlight-low: rgba(35, 176, 13, 0.05) !important;
+    --highlight-medium: rgba(35, 176, 13, 0.2) !important;
+    --highlight-high: rgba(35, 176, 13, 0.4) !important;
+    
+    /* Effects - darker green for light mode */
+    --krew-glow: 0 0 10px rgba(35, 176, 13, 0.3);
+    --krew-glow-strong: 0 0 15px rgba(35, 176, 13, 0.3), 0 0 30px rgba(35, 176, 13, 0.15);
+    --krew-border: 1px solid rgba(35, 176, 13, 0.3);
+  }
 }
 
 /* ==================== 
@@ -623,6 +669,60 @@ td.num,
     animation: scanline 6s linear infinite;
     opacity: 0.3;
     z-index: 9999;
+  }
+}
+
+/* ==================== 
+   Light Mode Specific - Buttons and Inputs
+   Use darker green for contrast on light backgrounds
+   ==================== */
+@media (prefers-color-scheme: light) {
+  /* Primary buttons - darker green for light mode */
+  .btn-primary,
+  .btn.btn-primary,
+  .btn.btn-primary.login-button {
+    background: rgba(35, 176, 13, 0.15) !important;
+    border: 1px solid #23B00D !important;
+    color: #1a8a0a !important;
+  }
+  
+  .btn-primary:hover,
+  .btn.btn-primary:hover,
+  .btn.btn-primary.login-button:hover {
+    background: rgba(35, 176, 13, 0.25) !important;
+    box-shadow: 0 0 10px rgba(35, 176, 13, 0.3);
+  }
+  
+  /* Default buttons hover */
+  .btn-default:hover,
+  .btn.btn-default:hover,
+  .btn:hover {
+    border-color: rgba(35, 176, 13, 0.4) !important;
+  }
+  
+  /* Input focus states */
+  input:focus,
+  textarea:focus,
+  select:focus,
+  .search-input:focus,
+  .search-input--welcome-banner:focus,
+  .select-kit.is-expanded .select-kit-header {
+    border-color: rgba(35, 176, 13, 0.4) !important;
+    box-shadow: 0 0 5px rgba(35, 176, 13, 0.15);
+  }
+  
+  /* Logo - lighter glow for light mode */
+  .logo-big[src*="kre-we-bacchus_transparant"] {
+    filter: drop-shadow(0 0 8px rgba(35, 176, 13, 0.2));
+  }
+  .logo-big[src*="kre-we-bacchus_transparant"]:hover {
+    filter: drop-shadow(0 0 8px rgba(35, 176, 13, 0.4));
+  }
+  
+  /* Category items */
+  .category-list-item:hover {
+    border-color: #23B00D;
+    box-shadow: 0 0 10px rgba(35, 176, 13, 0.3);
   }
 }
 
