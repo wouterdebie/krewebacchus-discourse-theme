@@ -24,108 +24,54 @@
 
 /* ==================== 
    CSS Variables
-   Override Discourse's auto-calculated variables that produce blue tints
-   NOTE: Using media queries since Discourse doesn't provide CSS classes for scheme detection
+   Using color-mix() with base variables for true scheme-agnostic styling
+   This adapts automatically because --primary is light in dark mode and dark in light mode
    ==================== */
-
-/* Dark mode (default) - white-based transparency */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Typography */
-    --krew-font-mono: "Courier New", Courier, monospace;
-    --krew-border-radius: 0 8px 0 8px;
-    
-    /* Neutral borders - pure white at low opacity (no blue tint) */
-    --krew-border: rgba(255, 255, 255, 0.1);
-    --krew-border-subtle: rgba(255, 255, 255, 0.05);
-    /* Green accent border like main app */
-    --krew-accent-border: rgba(57, 255, 20, 0.3);
-    /* Hover/active backgrounds */
-    --krew-hover-bg: rgba(255, 255, 255, 0.03);
-    /* Muted text - neutral gray instead of blue-tinted primary-medium */
-    --krew-text-muted: rgba(255, 255, 255, 0.5);
-    
-    /* OVERRIDE Discourse's broken auto-calculated variables (they compute to BLUE) */
-    /* Primary variants - text/foreground colors */
-    --primary-low: rgba(255, 255, 255, 0.1) !important;
-    --primary-very-low: rgba(255, 255, 255, 0.05) !important;
-    --primary-medium: rgba(255, 255, 255, 0.5) !important;
-    --primary-high: rgba(255, 255, 255, 0.7) !important;
-    --primary-low-mid: rgba(255, 255, 255, 0.2) !important;
-    --primary-50: rgba(255, 255, 255, 0.05) !important;
-    --primary-100: rgba(255, 255, 255, 0.1) !important;
-    --primary-200: rgba(255, 255, 255, 0.15) !important;
-    --primary-300: rgba(255, 255, 255, 0.2) !important;
-    --primary-400: rgba(255, 255, 255, 0.35) !important;
-    --primary-500: rgba(255, 255, 255, 0.5) !important;
-    --primary-600: rgba(255, 255, 255, 0.6) !important;
-    --primary-700: rgba(255, 255, 255, 0.7) !important;
-    
-    /* Tertiary variants - accent/link color (green) */
-    --tertiary-low: rgba(57, 255, 20, 0.1) !important;
-    --tertiary-very-low: rgba(57, 255, 20, 0.05) !important;
-    --tertiary-medium: rgba(57, 255, 20, 0.5) !important;
-    --tertiary-high: rgba(57, 255, 20, 0.7) !important;
-    
-    /* Secondary variants - background color variants (neutral, no blue) */
-    --secondary-low: rgba(255, 255, 255, 0.08) !important;
-    --secondary-very-low: rgba(255, 255, 255, 0.04) !important;
-    --secondary-medium: rgba(255, 255, 255, 0.15) !important;
-    --secondary-high: rgba(255, 255, 255, 0.25) !important;
-    
-    /* Highlight variants - for selections/focus (use green tint) */
-    --highlight-low: rgba(57, 255, 20, 0.05) !important;
-    --highlight-medium: rgba(57, 255, 20, 0.15) !important;
-    --highlight-high: rgba(57, 255, 20, 0.25) !important;
-  }
-}
-
-/* Light mode - black-based transparency */
-@media (prefers-color-scheme: light) {
-  :root {
-    /* Typography */
-    --krew-font-mono: "Courier New", Courier, monospace;
-    --krew-border-radius: 0 8px 0 8px;
-    
-    /* Stronger borders for light mode visibility */
-    --krew-border: rgba(0, 0, 0, 0.2);
-    --krew-border-subtle: rgba(0, 0, 0, 0.12);
-    --krew-accent-border: rgba(35, 176, 13, 0.5);
-    --krew-hover-bg: rgba(0, 0, 0, 0.05);
-    --krew-text-muted: rgba(0, 0, 0, 0.65);
-    
-    /* Primary variants for light mode - increased opacity */
-    --primary-low: rgba(0, 0, 0, 0.15) !important;
-    --primary-very-low: rgba(0, 0, 0, 0.08) !important;
-    --primary-medium: rgba(0, 0, 0, 0.65) !important;
-    --primary-high: rgba(0, 0, 0, 0.85) !important;
-    --primary-low-mid: rgba(0, 0, 0, 0.25) !important;
-    --primary-50: rgba(0, 0, 0, 0.08) !important;
-    --primary-100: rgba(0, 0, 0, 0.15) !important;
-    --primary-200: rgba(0, 0, 0, 0.2) !important;
-    --primary-300: rgba(0, 0, 0, 0.3) !important;
-    --primary-400: rgba(0, 0, 0, 0.45) !important;
-    --primary-500: rgba(0, 0, 0, 0.6) !important;
-    --primary-600: rgba(0, 0, 0, 0.75) !important;
-    --primary-700: rgba(0, 0, 0, 0.85) !important;
-    
-    /* Tertiary variants for light mode (darker green) */
-    --tertiary-low: rgba(35, 176, 13, 0.15) !important;
-    --tertiary-very-low: rgba(35, 176, 13, 0.08) !important;
-    --tertiary-medium: rgba(35, 176, 13, 0.65) !important;
-    --tertiary-high: rgba(35, 176, 13, 0.85) !important;
-    
-    /* Secondary variants for light mode - increased for border visibility */
-    --secondary-low: rgba(0, 0, 0, 0.1) !important;
-    --secondary-very-low: rgba(0, 0, 0, 0.06) !important;
-    --secondary-medium: rgba(0, 0, 0, 0.18) !important;
-    --secondary-high: rgba(0, 0, 0, 0.28) !important;
-    
-    /* Highlight variants for light mode */
-    --highlight-low: rgba(35, 176, 13, 0.12) !important;
-    --highlight-medium: rgba(35, 176, 13, 0.25) !important;
-    --highlight-high: rgba(35, 176, 13, 0.4) !important;
-  }
+:root {
+  /* Typography */
+  --krew-font-mono: "Courier New", Courier, monospace;
+  --krew-border-radius: 0 8px 0 8px;
+  
+  /* Scheme-agnostic colors using color-mix with base --primary */
+  /* These automatically adapt: --primary is #F8FAFF (light) in dark mode, #121B29 (dark) in light mode */
+  --krew-border: color-mix(in srgb, var(--primary) 15%, transparent);
+  --krew-border-subtle: color-mix(in srgb, var(--primary) 8%, transparent);
+  --krew-accent-border: color-mix(in srgb, var(--tertiary) 40%, transparent);
+  --krew-hover-bg: color-mix(in srgb, var(--primary) 5%, transparent);
+  --krew-text-muted: color-mix(in srgb, var(--primary) 60%, transparent);
+  
+  /* Override Discourse's broken auto-calculated variables using color-mix */
+  /* Primary variants */
+  --primary-low: color-mix(in srgb, var(--primary) 12%, transparent) !important;
+  --primary-very-low: color-mix(in srgb, var(--primary) 6%, transparent) !important;
+  --primary-medium: color-mix(in srgb, var(--primary) 55%, transparent) !important;
+  --primary-high: color-mix(in srgb, var(--primary) 75%, transparent) !important;
+  --primary-low-mid: color-mix(in srgb, var(--primary) 22%, transparent) !important;
+  --primary-50: color-mix(in srgb, var(--primary) 6%, transparent) !important;
+  --primary-100: color-mix(in srgb, var(--primary) 12%, transparent) !important;
+  --primary-200: color-mix(in srgb, var(--primary) 18%, transparent) !important;
+  --primary-300: color-mix(in srgb, var(--primary) 25%, transparent) !important;
+  --primary-400: color-mix(in srgb, var(--primary) 40%, transparent) !important;
+  --primary-500: color-mix(in srgb, var(--primary) 55%, transparent) !important;
+  --primary-600: color-mix(in srgb, var(--primary) 68%, transparent) !important;
+  --primary-700: color-mix(in srgb, var(--primary) 78%, transparent) !important;
+  
+  /* Tertiary variants (green accent) */
+  --tertiary-low: color-mix(in srgb, var(--tertiary) 12%, transparent) !important;
+  --tertiary-very-low: color-mix(in srgb, var(--tertiary) 6%, transparent) !important;
+  --tertiary-medium: color-mix(in srgb, var(--tertiary) 55%, transparent) !important;
+  --tertiary-high: color-mix(in srgb, var(--tertiary) 75%, transparent) !important;
+  
+  /* Secondary variants */
+  --secondary-low: color-mix(in srgb, var(--primary) 10%, transparent) !important;
+  --secondary-very-low: color-mix(in srgb, var(--primary) 5%, transparent) !important;
+  --secondary-medium: color-mix(in srgb, var(--primary) 18%, transparent) !important;
+  --secondary-high: color-mix(in srgb, var(--primary) 28%, transparent) !important;
+  
+  /* Highlight variants (use tertiary/green) */
+  --highlight-low: color-mix(in srgb, var(--tertiary) 8%, transparent) !important;
+  --highlight-medium: color-mix(in srgb, var(--tertiary) 20%, transparent) !important;
+  --highlight-high: color-mix(in srgb, var(--tertiary) 32%, transparent) !important;
 }
 
 /* ==================== 
@@ -701,87 +647,5 @@ td.num,
 @media (max-width: 768px) {
   .topic-list-item {
     border-radius: 4px;
-  }
-}
-
-/* ==================== 
-   Light Mode Explicit Overrides
-   Ensures borders and text are visible when OS prefers light
-   ==================== */
-@media (prefers-color-scheme: light) {
-  /* Borders need to be darker in light mode */
-  .topic-list th,
-  .topic-list-header {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2) !important;
-  }
-  
-  .topic-list-item {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15) !important;
-  }
-  
-  .topic-post,
-  .chat-message {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15) !important;
-  }
-  
-  /* Sidebar borders */
-  .sidebar-wrapper,
-  .sidebar-container,
-  nav.sidebar {
-    border-right: 1px solid rgba(0, 0, 0, 0.15) !important;
-  }
-  
-  /* Footer */
-  .custom-footer,
-  footer,
-  .powered-by-discourse {
-    border-top: 1px solid rgba(0, 0, 0, 0.15) !important;
-  }
-  
-  /* Buttons - ensure visible borders */
-  .btn-default,
-  .btn.btn-default,
-  .btn {
-    border: 1px solid rgba(0, 0, 0, 0.25) !important;
-  }
-  
-  .btn-primary,
-  .btn.btn-primary {
-    border: 1px solid var(--tertiary) !important;
-  }
-  
-  /* Inputs - ensure visible borders */
-  input[type="text"],
-  input[type="email"],
-  input[type="password"],
-  input[type="search"],
-  textarea,
-  select,
-  .select-kit .select-kit-header,
-  .search-input {
-    border: 1px solid rgba(0, 0, 0, 0.25) !important;
-  }
-  
-  /* Cards and boxes */
-  .topic-body,
-  .user-card,
-  .category-list-item,
-  .group-box,
-  .modal-inner-container,
-  .d-modal__container,
-  .chat-channel {
-    border: 1px solid rgba(0, 0, 0, 0.15) !important;
-  }
-  
-  /* Code blocks */
-  .cooked pre,
-  .cooked code {
-    border: 1px solid rgba(0, 0, 0, 0.15) !important;
-  }
-  
-  /* Modal headers */
-  .modal-header,
-  .d-modal__header {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15) !important;
   }
 }
