@@ -296,6 +296,21 @@ nav.sidebar {
   padding: 0.5rem 0;
 }
 
+/* Topic map (views section) - align with post content, not avatar */
+.topic-map,
+.post__topic-map {
+  margin-left: 57px !important;  /* Skip avatar column width */
+  padding-left: 0 !important;
+}
+
+/* Post bottom area - align with post content */
+.topic-area .container,
+.post-stream + *,
+.topic-footer-main-buttons,
+.suggested-topics {
+  margin-left: 57px !important;
+}
+
 /* Hide "Powered by Discourse" footer */
 .powered-by-discourse {
   display: none !important;
