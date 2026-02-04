@@ -158,6 +158,7 @@ h1, h2, h3,
 .badge-category__name {
   font-family: "VideoPhreak", sans-serif;
   letter-spacing: 0.1em;
+  text-transform: none; /* Preserve original case - don't inherit lowercase from Starjedi headings */
 }
 
 /* ==================== 
