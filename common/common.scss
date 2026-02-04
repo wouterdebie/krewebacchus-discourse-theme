@@ -1,6 +1,6 @@
 /* Krewebacchus Discourse Theme
  * Cyberpunk/sci-fi styling to match the main webapp
- * Supports both Dark and Light color schemes defined in about.json
+ * Fully scheme-agnostic - uses Discourse's CSS variables which adapt per scheme
  */
 
 /* ==================== 
@@ -25,93 +25,19 @@
 /* ==================== 
    CSS Variables
    Use Discourse's color scheme variables which are set by about.json
-   --primary = text color
-   --secondary = background color
-   --tertiary = accent color (green)
-   
-   Override calculated variants that Discourse gets wrong
-   Scheme-specific overrides via media queries
+   --primary = text color (light in dark mode, dark in light mode)
+   --secondary = background color (dark in dark mode, light in light mode)
+   --tertiary = accent color (green - neon in dark, darker in light)
    ==================== */
 :root {
   /* Typography */
   --krew-font-mono: "Courier New", Courier, monospace;
-  
-  /* Light mode tertiary (darker green for contrast on light bg) */
-  --krew-tertiary-light: #23B00D;
-  /* Dark mode tertiary (neon green) */
-  --krew-tertiary-dark: #39FF14;
-  
-  /* Effects - these use tertiary color */
   --krew-border-radius: 0 8px 0 8px;
 }
 
 /* ==================== 
-   DARK MODE Color Overrides
-   ==================== */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Primary variants (light text on dark bg) */
-    --primary-low: rgba(248, 250, 255, 0.1) !important;
-    --primary-low-mid: rgba(248, 250, 255, 0.2) !important;
-    --primary-medium: rgba(248, 250, 255, 0.4) !important;
-    --primary-high: rgba(248, 250, 255, 0.75) !important;
-    --primary-very-high: rgba(248, 250, 255, 0.9) !important;
-    --primary-very-low: rgba(248, 250, 255, 0.05) !important;
-    
-    /* Secondary variants (dark background shades) */
-    --secondary-low: #121B29 !important;
-    --secondary-medium: #1a2636 !important;
-    --secondary-high: #253344 !important;
-    --secondary-very-high: #344455 !important;
-    
-    /* Highlight (for hovers/selections) */
-    --highlight-bg: rgba(57, 255, 20, 0.1) !important;
-    --highlight-low: rgba(57, 255, 20, 0.05) !important;
-    --highlight-medium: rgba(57, 255, 20, 0.2) !important;
-    --highlight-high: rgba(57, 255, 20, 0.4) !important;
-    
-    /* Effects */
-    --krew-glow: 0 0 10px rgba(57, 255, 20, 0.3);
-    --krew-glow-strong: 0 0 15px rgba(57, 255, 20, 0.3), 0 0 30px rgba(57, 255, 20, 0.15);
-    --krew-border: 1px solid rgba(57, 255, 20, 0.3);
-  }
-}
-
-/* ==================== 
-   LIGHT MODE Color Overrides
-   ==================== */
-@media (prefers-color-scheme: light) {
-  :root {
-    /* Primary variants (dark text on light bg) */
-    --primary-low: rgba(18, 27, 41, 0.1) !important;
-    --primary-low-mid: rgba(18, 27, 41, 0.2) !important;
-    --primary-medium: rgba(18, 27, 41, 0.4) !important;
-    --primary-high: rgba(18, 27, 41, 0.75) !important;
-    --primary-very-high: rgba(18, 27, 41, 0.9) !important;
-    --primary-very-low: rgba(18, 27, 41, 0.05) !important;
-    
-    /* Secondary variants (light background shades) */
-    --secondary-low: #E8EAEF !important;
-    --secondary-medium: #D8DAE0 !important;
-    --secondary-high: #C8CAD0 !important;
-    --secondary-very-high: #B8BAC0 !important;
-    
-    /* Highlight (for hovers/selections) - darker green for light bg */
-    --highlight-bg: rgba(35, 176, 13, 0.1) !important;
-    --highlight-low: rgba(35, 176, 13, 0.05) !important;
-    --highlight-medium: rgba(35, 176, 13, 0.2) !important;
-    --highlight-high: rgba(35, 176, 13, 0.4) !important;
-    
-    /* Effects - darker green for light mode */
-    --krew-glow: 0 0 10px rgba(35, 176, 13, 0.3);
-    --krew-glow-strong: 0 0 15px rgba(35, 176, 13, 0.3), 0 0 30px rgba(35, 176, 13, 0.15);
-    --krew-border: 1px solid rgba(35, 176, 13, 0.3);
-  }
-}
-
-/* ==================== 
    Base Styling
-   Uses Discourse color scheme variables
+   Uses Discourse color scheme variables that auto-adapt
    ==================== */
 html {
   background: var(--secondary) !important;
@@ -202,13 +128,13 @@ h1, h2, h3,
 .d-header {
   background: var(--header_background) !important;
   border-bottom: 2px solid var(--tertiary) !important;
-  box-shadow: var(--krew-glow);
+  box-shadow: 0 0 10px var(--tertiary-low);
 }
 
 /* Logo glow effect */
 .d-header .logo-big,
 .d-header .logo-small {
-  filter: drop-shadow(0 0 8px rgba(57, 255, 20, 0.3));
+  filter: drop-shadow(0 0 8px var(--tertiary-low));
 }
 
 /* Header icons */
@@ -218,7 +144,7 @@ h1, h2, h3,
 }
 
 .d-header-icons .icon:hover {
-  filter: drop-shadow(0 0 8px rgba(57, 255, 20, 0.5));
+  filter: drop-shadow(0 0 8px var(--tertiary-medium));
 }
 
 /* ==================== 
@@ -256,7 +182,7 @@ a:hover,
 .sidebar-section-content,
 nav.sidebar {
   background-color: var(--secondary) !important;
-  border-right: var(--krew-border);
+  border-right: 1px solid var(--tertiary-low);
 }
 
 .sidebar-section-header-wrapper {
@@ -275,8 +201,8 @@ nav.sidebar {
 
 .sidebar-section-link:hover,
 .sidebar-section-link.active {
-  background-color: var(--highlight-bg) !important;
-  box-shadow: inset 0 0 10px rgba(57, 255, 20, 0.2);
+  background-color: var(--tertiary-very-low) !important;
+  box-shadow: inset 0 0 10px var(--tertiary-very-low);
 }
 
 .sidebar-section-link.active {
@@ -293,7 +219,7 @@ nav.sidebar {
   text-transform: uppercase;
   font-size: 0.7rem;
   letter-spacing: 0.1em;
-  border-bottom: var(--krew-border) !important;
+  border-bottom: 1px solid var(--tertiary-low) !important;
   background: transparent !important;
 }
 
@@ -303,8 +229,8 @@ nav.sidebar {
 }
 
 .topic-list-item:hover {
-  background-color: var(--highlight-bg) !important;
-  box-shadow: var(--krew-glow);
+  background-color: var(--tertiary-very-low) !important;
+  box-shadow: 0 0 10px var(--tertiary-very-low);
 }
 
 /* Pinned topics */
@@ -316,8 +242,8 @@ nav.sidebar {
    Topic View
    ==================== */
 .topic-body {
-  background-color: var(--secondary-low) !important;
-  border: var(--krew-border);
+  background-color: var(--primary-very-low) !important;
+  border: 1px solid var(--tertiary-low);
   border-radius: var(--krew-border-radius);
 }
 
@@ -346,7 +272,7 @@ nav.sidebar {
 .cooked pre,
 .cooked code {
   background-color: var(--primary-very-low) !important;
-  border: var(--krew-border);
+  border: 1px solid var(--tertiary-low);
   border-radius: var(--krew-border-radius);
   font-family: var(--krew-font-mono);
 }
@@ -357,38 +283,62 @@ nav.sidebar {
 
 /* Blockquotes */
 .cooked blockquote {
-  background-color: rgba(20, 207, 255, 0.1) !important;
+  background-color: var(--quaternary-low) !important;
   border-left: 3px solid var(--quaternary) !important;
   padding-left: 1rem;
 }
 
 /* ==================== 
-   Buttons
+   Buttons - Primary (Green accent)
+   Uses pseudo-element for scheme-adaptive tinted background
    ==================== */
 .btn-primary,
 .btn.btn-primary,
 .btn.btn-primary.login-button {
-  background: rgba(57, 255, 20, 0.15) !important;
+  position: relative;
+  background: transparent !important;
   border: 1px solid var(--tertiary) !important;
   color: var(--tertiary) !important;
   font-weight: 600;
   border-radius: var(--krew-border-radius);
   transition: all 0.3s ease;
   text-shadow: none !important;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-primary::before,
+.btn.btn-primary::before,
+.btn.btn-primary.login-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--tertiary);
+  opacity: 0.15;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover::before,
+.btn.btn-primary:hover::before,
+.btn.btn-primary.login-button:hover::before {
+  opacity: 0.25;
 }
 
 .btn-primary:hover,
 .btn.btn-primary:hover,
 .btn.btn-primary.login-button:hover {
-  background: rgba(57, 255, 20, 0.25) !important;
-  box-shadow: var(--krew-glow);
+  box-shadow: 0 0 10px var(--tertiary-low);
   transform: translateY(-1px);
 }
 
+/* ==================== 
+   Buttons - Default
+   ==================== */
 .btn-default,
 .btn.btn-default,
 .btn {
-  background-color: var(--secondary-low) !important;
+  background-color: var(--primary-very-low) !important;
   border: 1px solid var(--primary-low) !important;
   color: var(--primary) !important;
   border-radius: var(--krew-border-radius);
@@ -398,8 +348,8 @@ nav.sidebar {
 .btn-default:hover,
 .btn.btn-default:hover,
 .btn:hover {
-  background-color: var(--highlight-bg) !important;
-  border-color: rgba(57, 255, 20, 0.4) !important;
+  background-color: var(--tertiary-very-low) !important;
+  border-color: var(--tertiary-low) !important;
 }
 
 .btn-danger,
@@ -423,7 +373,7 @@ select,
 .search-input,
 .search-input--welcome-banner,
 .search-container .search-input {
-  background-color: var(--secondary-low) !important;
+  background-color: var(--primary-very-low) !important;
   border: 1px solid var(--primary-low) !important;
   border-radius: var(--krew-border-radius);
   color: var(--primary) !important;
@@ -436,17 +386,17 @@ select:focus,
 .search-input:focus,
 .search-input--welcome-banner:focus,
 .select-kit.is-expanded .select-kit-header {
-  border-color: rgba(57, 255, 20, 0.4) !important;
+  border-color: var(--tertiary-medium) !important;
   outline: none;
-  box-shadow: 0 0 5px rgba(57, 255, 20, 0.15);
+  box-shadow: 0 0 5px var(--tertiary-low);
 }
 
 /* ==================== 
    Categories
    ==================== */
 .category-list-item {
-  background-color: var(--secondary-low) !important;
-  border: var(--krew-border);
+  background-color: var(--primary-very-low) !important;
+  border: 1px solid var(--tertiary-low);
   border-radius: var(--krew-border-radius);
   margin-bottom: 0.5rem;
   transition: all 0.2s ease;
@@ -454,7 +404,7 @@ select:focus,
 
 .category-list-item:hover {
   border-color: var(--tertiary);
-  box-shadow: var(--krew-glow);
+  box-shadow: 0 0 10px var(--tertiary-low);
 }
 
 /* Category badges */
@@ -467,10 +417,10 @@ select:focus,
    ==================== */
 .user-card,
 .user-card-large {
-  background-color: var(--secondary-low) !important;
-  border: var(--krew-border);
+  background-color: var(--primary-very-low) !important;
+  border: 1px solid var(--tertiary-low);
   border-radius: var(--krew-border-radius);
-  box-shadow: var(--krew-glow);
+  box-shadow: 0 0 10px var(--tertiary-low);
 }
 
 .user-card h1,
@@ -481,7 +431,7 @@ select:focus,
 /* Avatar glow for admins/captains */
 .user-card.admin .avatar-flair,
 .user-card.moderator .avatar-flair {
-  box-shadow: var(--krew-glow-strong);
+  box-shadow: 0 0 15px var(--tertiary-low), 0 0 30px var(--tertiary-very-low);
 }
 
 /* ==================== 
@@ -500,8 +450,8 @@ select:focus,
 
 /* User badges */
 .user-badge {
-  background-color: var(--highlight-bg) !important;
-  border: var(--krew-border);
+  background-color: var(--tertiary-very-low) !important;
+  border: 1px solid var(--tertiary-low);
   border-radius: var(--krew-border-radius);
 }
 
@@ -511,14 +461,14 @@ select:focus,
 .modal-inner-container,
 .d-modal__container {
   background-color: var(--secondary) !important;
-  border: var(--krew-border);
+  border: 1px solid var(--tertiary-low);
   border-radius: 8px;
-  box-shadow: var(--krew-glow-strong);
+  box-shadow: 0 0 15px var(--tertiary-low), 0 0 30px var(--tertiary-very-low);
 }
 
 .modal-header,
 .d-modal__header {
-  border-bottom: var(--krew-border);
+  border-bottom: 1px solid var(--tertiary-low);
 }
 
 .modal-header h3,
@@ -531,8 +481,8 @@ select:focus,
    Chat
    ==================== */
 .chat-channel {
-  background-color: var(--secondary-low) !important;
-  border: var(--krew-border);
+  background-color: var(--primary-very-low) !important;
+  border: 1px solid var(--tertiary-low);
 }
 
 .chat-message {
@@ -540,12 +490,12 @@ select:focus,
 }
 
 .chat-message:hover {
-  background-color: var(--highlight-bg) !important;
+  background-color: var(--tertiary-very-low) !important;
 }
 
 .chat-composer-input {
-  background-color: var(--secondary-low) !important;
-  border: var(--krew-border);
+  background-color: var(--primary-very-low) !important;
+  border: 1px solid var(--tertiary-low);
 }
 
 /* ==================== 
@@ -559,10 +509,10 @@ select:focus,
 /* Page loading bar */
 #discourse-loading-spinner {
   background-color: var(--tertiary) !important;
-  box-shadow: var(--krew-glow-strong);
+  box-shadow: 0 0 15px var(--tertiary-low), 0 0 30px var(--tertiary-very-low);
 }
 
-/* Subtle scan line effect for sci-fi feel - only in dark mode */
+/* Subtle scan line effect for sci-fi feel */
 @keyframes scanline {
   0% {
     transform: translateY(-100%);
@@ -586,7 +536,7 @@ select:focus,
 
 ::-webkit-scrollbar-thumb {
   background: var(--primary-low);
-  border: 1px solid rgba(57, 255, 20, 0.3);
+  border: 1px solid var(--tertiary-low);
   border-radius: 4px;
 }
 
@@ -599,14 +549,14 @@ select:focus,
    Groups (SubKrewes)
    ==================== */
 .group-box {
-  background-color: var(--secondary-low) !important;
-  border: var(--krew-border);
+  background-color: var(--primary-very-low) !important;
+  border: 1px solid var(--tertiary-low);
   border-radius: var(--krew-border-radius);
 }
 
 .group-box:hover {
   border-color: var(--tertiary);
-  box-shadow: var(--krew-glow);
+  box-shadow: 0 0 10px var(--tertiary-low);
 }
 
 /* ==================== 
@@ -616,7 +566,7 @@ select:focus,
 footer,
 .powered-by-discourse {
   background-color: transparent !important;
-  border-top: var(--krew-border);
+  border-top: 1px solid var(--tertiary-low);
   color: var(--primary-medium) !important;
 }
 
@@ -654,88 +604,10 @@ td.num,
 }
 
 /* ==================== 
-   Dark Mode Specific - Scanline effect
-   ==================== */
-@media (prefers-color-scheme: dark) {
-  body::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.3), transparent);
-    pointer-events: none;
-    animation: scanline 6s linear infinite;
-    opacity: 0.3;
-    z-index: 9999;
-  }
-}
-
-/* ==================== 
-   Light Mode Specific - Buttons and Inputs
-   Use darker green for contrast on light backgrounds
-   ==================== */
-@media (prefers-color-scheme: light) {
-  /* Primary buttons - darker green for light mode */
-  .btn-primary,
-  .btn.btn-primary,
-  .btn.btn-primary.login-button {
-    background: rgba(35, 176, 13, 0.15) !important;
-    border: 1px solid #23B00D !important;
-    color: #1a8a0a !important;
-  }
-  
-  .btn-primary:hover,
-  .btn.btn-primary:hover,
-  .btn.btn-primary.login-button:hover {
-    background: rgba(35, 176, 13, 0.25) !important;
-    box-shadow: 0 0 10px rgba(35, 176, 13, 0.3);
-  }
-  
-  /* Default buttons hover */
-  .btn-default:hover,
-  .btn.btn-default:hover,
-  .btn:hover {
-    border-color: rgba(35, 176, 13, 0.4) !important;
-  }
-  
-  /* Input focus states */
-  input:focus,
-  textarea:focus,
-  select:focus,
-  .search-input:focus,
-  .search-input--welcome-banner:focus,
-  .select-kit.is-expanded .select-kit-header {
-    border-color: rgba(35, 176, 13, 0.4) !important;
-    box-shadow: 0 0 5px rgba(35, 176, 13, 0.15);
-  }
-  
-  /* Logo - lighter glow for light mode */
-  .logo-big[src*="kre-we-bacchus_transparant"] {
-    filter: drop-shadow(0 0 8px rgba(35, 176, 13, 0.2));
-  }
-  .logo-big[src*="kre-we-bacchus_transparant"]:hover {
-    filter: drop-shadow(0 0 8px rgba(35, 176, 13, 0.4));
-  }
-  
-  /* Category items */
-  .category-list-item:hover {
-    border-color: #23B00D;
-    box-shadow: 0 0 10px rgba(35, 176, 13, 0.3);
-  }
-}
-
-/* ==================== 
    Responsive Adjustments
    ==================== */
 @media (max-width: 768px) {
   .topic-list-item {
     border-radius: 4px;
-  }
-  
-  /* Disable scanline on mobile for performance */
-  body::after {
-    display: none !important;
   }
 }
