@@ -28,16 +28,38 @@
    --primary = text color
    --secondary = background color
    --tertiary = accent color (green)
+   
+   Override calculated variants that Discourse gets wrong
    ==================== */
 :root {
   /* Typography */
   --krew-font-mono: "Courier New", Courier, monospace;
   
+  /* Override Discourse's broken auto-calculated variants */
+  /* Primary variants (light text on dark bg) */
+  --primary-low: rgba(248, 250, 255, 0.1) !important;
+  --primary-low-mid: rgba(248, 250, 255, 0.2) !important;
+  --primary-medium: rgba(248, 250, 255, 0.4) !important;
+  --primary-high: rgba(248, 250, 255, 0.75) !important;
+  --primary-very-high: rgba(248, 250, 255, 0.9) !important;
+  --primary-very-low: rgba(248, 250, 255, 0.05) !important;
+  
+  /* Secondary variants (dark background shades) */
+  --secondary-low: #121B29 !important;
+  --secondary-medium: #1a2636 !important;
+  --secondary-high: #253344 !important;
+  --secondary-very-high: #344455 !important;
+  
+  /* Highlight (for hovers/selections) */
+  --highlight-bg: rgba(57, 255, 20, 0.1) !important;
+  --highlight-low: rgba(57, 255, 20, 0.05) !important;
+  --highlight-medium: rgba(57, 255, 20, 0.2) !important;
+  --highlight-high: rgba(57, 255, 20, 0.4) !important;
+  
   /* Effects - these adapt based on tertiary color */
-  --krew-glow: 0 0 10px color-mix(in srgb, var(--tertiary) 30%, transparent);
-  --krew-glow-strong: 0 0 15px color-mix(in srgb, var(--tertiary) 30%, transparent), 
-                      0 0 30px color-mix(in srgb, var(--tertiary) 15%, transparent);
-  --krew-border: 1px solid color-mix(in srgb, var(--tertiary) 30%, transparent);
+  --krew-glow: 0 0 10px rgba(57, 255, 20, 0.3);
+  --krew-glow-strong: 0 0 15px rgba(57, 255, 20, 0.3), 0 0 30px rgba(57, 255, 20, 0.15);
+  --krew-border: 1px solid rgba(57, 255, 20, 0.3);
   --krew-border-radius: 0 8px 0 8px;
 }
 
@@ -140,7 +162,7 @@ h1, h2, h3,
 /* Logo glow effect */
 .d-header .logo-big,
 .d-header .logo-small {
-  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--tertiary) 30%, transparent));
+  filter: drop-shadow(0 0 8px rgba(57, 255, 20, 0.3));
 }
 
 /* Header icons */
@@ -150,7 +172,7 @@ h1, h2, h3,
 }
 
 .d-header-icons .icon:hover {
-  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--tertiary) 50%, transparent));
+  filter: drop-shadow(0 0 8px rgba(57, 255, 20, 0.5));
 }
 
 /* ==================== 
@@ -208,7 +230,7 @@ nav.sidebar {
 .sidebar-section-link:hover,
 .sidebar-section-link.active {
   background-color: var(--highlight-bg) !important;
-  box-shadow: inset 0 0 10px color-mix(in srgb, var(--tertiary) 20%, transparent);
+  box-shadow: inset 0 0 10px rgba(57, 255, 20, 0.2);
 }
 
 .sidebar-section-link.active {
@@ -289,7 +311,7 @@ nav.sidebar {
 
 /* Blockquotes */
 .cooked blockquote {
-  background-color: color-mix(in srgb, var(--quaternary) 10%, transparent) !important;
+  background-color: rgba(20, 207, 255, 0.1) !important;
   border-left: 3px solid var(--quaternary) !important;
   padding-left: 1rem;
 }
@@ -300,7 +322,7 @@ nav.sidebar {
 .btn-primary,
 .btn.btn-primary,
 .btn.btn-primary.login-button {
-  background: color-mix(in srgb, var(--tertiary) 15%, var(--secondary)) !important;
+  background: rgba(57, 255, 20, 0.15) !important;
   border: 1px solid var(--tertiary) !important;
   color: var(--tertiary) !important;
   font-weight: 600;
@@ -312,7 +334,7 @@ nav.sidebar {
 .btn-primary:hover,
 .btn.btn-primary:hover,
 .btn.btn-primary.login-button:hover {
-  background: color-mix(in srgb, var(--tertiary) 25%, var(--secondary)) !important;
+  background: rgba(57, 255, 20, 0.25) !important;
   box-shadow: var(--krew-glow);
   transform: translateY(-1px);
 }
@@ -331,7 +353,7 @@ nav.sidebar {
 .btn.btn-default:hover,
 .btn:hover {
   background-color: var(--highlight-bg) !important;
-  border-color: color-mix(in srgb, var(--tertiary) 40%, transparent) !important;
+  border-color: rgba(57, 255, 20, 0.4) !important;
 }
 
 .btn-danger,
@@ -368,9 +390,9 @@ select:focus,
 .search-input:focus,
 .search-input--welcome-banner:focus,
 .select-kit.is-expanded .select-kit-header {
-  border-color: color-mix(in srgb, var(--tertiary) 40%, transparent) !important;
+  border-color: rgba(57, 255, 20, 0.4) !important;
   outline: none;
-  box-shadow: 0 0 5px color-mix(in srgb, var(--tertiary) 15%, transparent);
+  box-shadow: 0 0 5px rgba(57, 255, 20, 0.15);
 }
 
 /* ==================== 
@@ -518,7 +540,7 @@ select:focus,
 
 ::-webkit-scrollbar-thumb {
   background: var(--primary-low);
-  border: 1px solid color-mix(in srgb, var(--tertiary) 30%, transparent);
+  border: 1px solid rgba(57, 255, 20, 0.3);
   border-radius: 4px;
 }
 
@@ -596,7 +618,7 @@ td.num,
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--tertiary) 30%, transparent), transparent);
+    background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.3), transparent);
     pointer-events: none;
     animation: scanline 6s linear infinite;
     opacity: 0.3;
