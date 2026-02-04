@@ -1,6 +1,6 @@
 /* Krewebacchus Discourse Theme
  * Cyberpunk/sci-fi styling to match the main webapp
- * Dark mode is default - matches krewebacchus.org
+ * Supports both Dark and Light color schemes defined in about.json
  */
 
 /* ==================== 
@@ -23,109 +23,40 @@
 }
 
 /* ==================== 
-   CSS Variables - Dark Mode (default)
-   Override ALL Discourse CSS custom properties
+   CSS Variables
+   Use Discourse's color scheme variables which are set by about.json
+   --primary = text color
+   --secondary = background color
+   --tertiary = accent color (green)
    ==================== */
 :root {
-  /* Krewebacchus brand colors */
-  --krew-primary: #39FF14;
-  --krew-primary-hover: #65FF3C;
-  --krew-primary-glow: rgba(57, 255, 20, 0.3);
-  --krew-surface-darkest: #0A1018;
-  --krew-surface-dark: #121B29;
-  --krew-surface-mid: #1a2636;
-  --krew-surface-light: #253344;
-  --krew-text: #F8FAFF;
-  --krew-text-muted: #8A9BAD;
-  
   /* Typography */
   --krew-font-mono: "Courier New", Courier, monospace;
   
-  /* Accent Colors */
-  --krew-danger: #FF3E5E;
-  --krew-warning: #FFB114;
-  --krew-info: #14CFFF;
-  --krew-success: #14FF83;
-  
-  /* Override Discourse's CSS properties */
-  --primary: #F8FAFF !important;
-  --primary-rgb: 248, 250, 255 !important;
-  --secondary: #0A1018 !important;
-  --secondary-rgb: 10, 16, 24 !important;
-  --tertiary: #39FF14 !important;
-  --tertiary-rgb: 57, 255, 20 !important;
-  --quaternary: #8A9BAD !important;
-  --header_background: #121B29 !important;
-  --header_primary: #F8FAFF !important;
-  --highlight: rgba(57, 255, 20, 0.15) !important;
-  --highlight-bg: rgba(57, 255, 20, 0.1) !important;
-  --success: #39FF14 !important;
-  --love: #39FF14 !important;
-  --danger: #FF3E5E !important;
-  --warning: #FFB114 !important;
-  
-  /* Primary shades */
-  --primary-low: rgba(248, 250, 255, 0.1) !important;
-  --primary-low-rgb: 248, 250, 255 !important;
-  --primary-low-mid: rgba(248, 250, 255, 0.2) !important;
-  --primary-medium: rgba(248, 250, 255, 0.4) !important;
-  --primary-high: rgba(248, 250, 255, 0.75) !important;
-  --primary-very-high: rgba(248, 250, 255, 0.85) !important;
-  --primary-50: rgba(248, 250, 255, 0.05) !important;
-  --primary-100: rgba(248, 250, 255, 0.1) !important;
-  --primary-200: rgba(248, 250, 255, 0.2) !important;
-  --primary-300: rgba(248, 250, 255, 0.3) !important;
-  --primary-400: rgba(248, 250, 255, 0.4) !important;
-  --primary-500: rgba(248, 250, 255, 0.5) !important;
-  --primary-600: rgba(248, 250, 255, 0.6) !important;
-  --primary-700: rgba(248, 250, 255, 0.7) !important;
-  --primary-800: rgba(248, 250, 255, 0.8) !important;
-  --primary-900: rgba(248, 250, 255, 0.9) !important;
-  
-  /* Secondary shades (backgrounds) */
-  --secondary-low: #1a2636 !important;
-  --secondary-medium: #253344 !important;
-  --secondary-high: #344455 !important;
-  --secondary-very-high: #445566 !important;
-  --secondary-50: #0c1219 !important;
-  --secondary-100: #0e1520 !important;
-  --secondary-200: #121B29 !important;
-  --secondary-300: #1a2636 !important;
-  --secondary-400: #253344 !important;
-  --secondary-500: #344455 !important;
-  --secondary-600: #445566 !important;
-  --secondary-700: #556677 !important;
-  --secondary-800: #667788 !important;
-  --secondary-900: #778899 !important;
-  
-  /* Tertiary shades (green accent) */
-  --tertiary-low: rgba(57, 255, 20, 0.1) !important;
-  --tertiary-medium: rgba(57, 255, 20, 0.4) !important;
-  --tertiary-high: rgba(57, 255, 20, 0.75) !important;
-  --tertiary-hover: #65FF3C !important;
-  
-  /* Effects */
-  --krew-glow: 0 0 10px var(--krew-primary-glow);
-  --krew-glow-strong: 0 0 15px var(--krew-primary-glow), 0 0 30px rgba(57, 255, 20, 0.15);
-  --krew-border: 1px solid rgba(57, 255, 20, 0.3);
+  /* Effects - these adapt based on tertiary color */
+  --krew-glow: 0 0 10px color-mix(in srgb, var(--tertiary) 30%, transparent);
+  --krew-glow-strong: 0 0 15px color-mix(in srgb, var(--tertiary) 30%, transparent), 
+                      0 0 30px color-mix(in srgb, var(--tertiary) 15%, transparent);
+  --krew-border: 1px solid color-mix(in srgb, var(--tertiary) 30%, transparent);
   --krew-border-radius: 0 8px 0 8px;
 }
 
 /* ==================== 
-   Force Dark Backgrounds Everywhere
+   Base Styling
+   Uses Discourse color scheme variables
    ==================== */
 html {
-  background: var(--krew-surface-darkest) !important;
+  background: var(--secondary) !important;
 }
 
 body {
-  background-color: var(--krew-surface-darkest) !important;
-  color: var(--krew-text) !important;
+  background-color: var(--secondary) !important;
+  color: var(--primary) !important;
   font-family: var(--krew-font-mono);
   font-weight: 500;
 }
 
-/* Force backgrounds on all major content areas */
+/* Force backgrounds on major content areas */
 #main-outlet,
 .wrap,
 .full-width,
@@ -135,12 +66,10 @@ body {
 .ember-application,
 .topic-body,
 .topic-area,
-.topic-list,
 .list-container,
 .topic-list-container,
 .topic-post,
 .post-stream,
-.cooked,
 main,
 nav,
 aside,
@@ -151,10 +80,10 @@ article,
 .user-preferences,
 .admin-contents,
 .show-more {
-  background-color: var(--krew-surface-darkest) !important;
+  background-color: var(--secondary) !important;
 }
 
-/* Table rows must be dark */
+/* Table rows */
 .topic-list-item,
 .topic-list-item td,
 .topic-list tbody tr,
@@ -162,14 +91,15 @@ table.topic-list tbody tr,
 .latest-topic-list-item,
 .category-list-item,
 tr {
-  background-color: var(--krew-surface-darkest) !important;
+  background-color: var(--secondary) !important;
 }
 
-/* Transparent elements - avoid double backgrounds */
+/* Transparent elements */
 .full-width,
 .contents,
 .topic-list,
-.category-list {
+.category-list,
+.cooked {
   background-color: transparent !important;
 }
 
@@ -186,7 +116,7 @@ h1, h2, h3,
   font-weight: 500;
   text-transform: lowercase;
   letter-spacing: 0.05em;
-  color: var(--krew-text) !important;
+  color: var(--primary) !important;
 }
 
 /* Category/section headers use VideoPhreak */
@@ -202,26 +132,25 @@ h1, h2, h3,
    ==================== */
 .d-header-wrap,
 .d-header {
-  background: var(--krew-surface-dark) !important;
-  border-bottom: 2px solid var(--krew-primary) !important;
+  background: var(--header_background) !important;
+  border-bottom: 2px solid var(--tertiary) !important;
   box-shadow: var(--krew-glow);
 }
 
 /* Logo glow effect */
 .d-header .logo-big,
 .d-header .logo-small {
-  filter: drop-shadow(0 0 8px var(--krew-primary-glow));
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--tertiary) 30%, transparent));
 }
 
 /* Header icons */
 .d-header-icons .icon {
-  color: var(--krew-primary) !important;
+  color: var(--tertiary) !important;
   transition: all 0.3s ease;
 }
 
 .d-header-icons .icon:hover {
-  color: var(--krew-primary-hover) !important;
-  filter: drop-shadow(0 0 8px var(--krew-primary-glow));
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--tertiary) 50%, transparent));
 }
 
 /* ==================== 
@@ -233,19 +162,19 @@ a,
 .topic-list-item .title,
 .sidebar-section-link-wrapper a,
 .nav-pills > li > a {
-  color: var(--krew-primary) !important;
+  color: var(--tertiary) !important;
   transition: all 0.2s ease;
 }
 
 a:hover,
 .topic-list-item .title:hover {
-  color: var(--krew-primary-hover) !important;
+  filter: brightness(1.2);
 }
 
 /* Muted/secondary links */
 .topic-list .link-bottom-line a,
 .link-bottom-line a {
-  color: var(--krew-text-muted) !important;
+  color: var(--primary-medium) !important;
 }
 
 /* ==================== 
@@ -258,12 +187,12 @@ a:hover,
 .sidebar-section-wrapper,
 .sidebar-section-content,
 nav.sidebar {
-  background-color: var(--krew-surface-darkest) !important;
+  background-color: var(--secondary) !important;
   border-right: var(--krew-border);
 }
 
 .sidebar-section-header-wrapper {
-  color: var(--krew-primary) !important;
+  color: var(--tertiary) !important;
   font-family: var(--krew-font-mono);
   text-transform: uppercase;
   font-size: 0.75rem;
@@ -273,17 +202,17 @@ nav.sidebar {
 .sidebar-section-link {
   border-radius: var(--krew-border-radius);
   transition: all 0.2s ease;
-  color: var(--krew-text) !important;
+  color: var(--primary) !important;
 }
 
 .sidebar-section-link:hover,
 .sidebar-section-link.active {
-  background-color: var(--krew-surface-mid) !important;
-  box-shadow: inset 0 0 10px var(--krew-primary-glow);
+  background-color: var(--highlight-bg) !important;
+  box-shadow: inset 0 0 10px color-mix(in srgb, var(--tertiary) 20%, transparent);
 }
 
 .sidebar-section-link.active {
-  border-left: 2px solid var(--krew-primary);
+  border-left: 2px solid var(--tertiary);
 }
 
 /* ==================== 
@@ -291,7 +220,7 @@ nav.sidebar {
    ==================== */
 .topic-list th,
 .topic-list-header {
-  color: var(--krew-primary) !important;
+  color: var(--tertiary) !important;
   font-family: var(--krew-font-mono);
   text-transform: uppercase;
   font-size: 0.7rem;
@@ -301,67 +230,67 @@ nav.sidebar {
 }
 
 .topic-list-item {
-  border-bottom: 1px solid var(--krew-surface-mid) !important;
+  border-bottom: 1px solid var(--primary-low) !important;
   transition: all 0.2s ease;
 }
 
 .topic-list-item:hover {
-  background-color: var(--krew-surface-mid) !important;
+  background-color: var(--highlight-bg) !important;
   box-shadow: var(--krew-glow);
 }
 
 /* Pinned topics */
 .topic-list-item.pinned .title::before {
-  color: var(--krew-warning) !important;
+  color: var(--warning) !important;
 }
 
 /* ==================== 
    Topic View
    ==================== */
 .topic-body {
-  background-color: var(--krew-surface-dark) !important;
+  background-color: var(--secondary-low) !important;
   border: var(--krew-border);
   border-radius: var(--krew-border-radius);
 }
 
 .topic-post {
-  border-bottom: 1px solid var(--krew-surface-mid);
+  border-bottom: 1px solid var(--primary-low);
 }
 
 /* Post content */
 .cooked {
-  color: var(--krew-text) !important;
+  color: var(--primary) !important;
 }
 
 .cooked a {
-  color: var(--krew-info) !important;
+  color: var(--quaternary) !important;
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: all 0.2s ease;
 }
 
 .cooked a:hover {
-  color: var(--krew-primary) !important;
-  border-bottom-color: var(--krew-primary);
+  color: var(--tertiary) !important;
+  border-bottom-color: var(--tertiary);
 }
 
 /* Code blocks */
 .cooked pre,
 .cooked code {
-  background-color: var(--krew-surface-mid) !important;
+  background-color: var(--primary-very-low) !important;
   border: var(--krew-border);
   border-radius: var(--krew-border-radius);
   font-family: var(--krew-font-mono);
 }
 
 .cooked pre code {
-  color: var(--krew-primary) !important;
+  color: var(--tertiary) !important;
 }
 
 /* Blockquotes */
 .cooked blockquote {
-  background-color: rgba(20, 207, 255, 0.1) !important;
-  border-left: 3px solid var(--krew-info) !important;
+  background-color: color-mix(in srgb, var(--quaternary) 10%, transparent) !important;
+  border-left: 3px solid var(--quaternary) !important;
   padding-left: 1rem;
 }
 
@@ -370,9 +299,9 @@ nav.sidebar {
    ==================== */
 .btn-primary,
 .btn.btn-primary {
-  background: var(--krew-primary) !important;
+  background: var(--tertiary) !important;
   border: none !important;
-  color: var(--krew-surface-darkest) !important;
+  color: var(--secondary) !important;
   font-weight: 600;
   border-radius: var(--krew-border-radius);
   transition: all 0.3s ease;
@@ -381,7 +310,7 @@ nav.sidebar {
 
 .btn-primary:hover,
 .btn.btn-primary:hover {
-  background: var(--krew-primary-hover) !important;
+  filter: brightness(1.15);
   box-shadow: var(--krew-glow-strong);
   transform: translateY(-1px);
 }
@@ -389,9 +318,9 @@ nav.sidebar {
 .btn-default,
 .btn.btn-default,
 .btn {
-  background-color: var(--krew-surface-dark) !important;
+  background-color: var(--secondary-low) !important;
   border: var(--krew-border) !important;
-  color: var(--krew-text) !important;
+  color: var(--primary) !important;
   border-radius: var(--krew-border-radius);
   transition: all 0.2s ease;
 }
@@ -399,13 +328,13 @@ nav.sidebar {
 .btn-default:hover,
 .btn.btn-default:hover,
 .btn:hover {
-  background-color: var(--krew-surface-mid) !important;
+  background-color: var(--highlight-bg) !important;
   box-shadow: var(--krew-glow);
 }
 
 .btn-danger,
 .btn.btn-danger {
-  background-color: var(--krew-danger) !important;
+  background-color: var(--danger) !important;
   border: none !important;
   color: white !important;
   border-radius: var(--krew-border-radius);
@@ -423,10 +352,10 @@ select,
 .select-kit .select-kit-header,
 .search-input,
 .search-container .search-input {
-  background-color: var(--krew-surface-dark) !important;
+  background-color: var(--secondary-low) !important;
   border: var(--krew-border) !important;
   border-radius: var(--krew-border-radius);
-  color: var(--krew-text) !important;
+  color: var(--primary) !important;
   transition: all 0.2s ease;
 }
 
@@ -434,7 +363,7 @@ input:focus,
 textarea:focus,
 select:focus,
 .select-kit.is-expanded .select-kit-header {
-  border-color: var(--krew-primary) !important;
+  border-color: var(--tertiary) !important;
   outline: none;
   box-shadow: var(--krew-glow);
 }
@@ -443,7 +372,7 @@ select:focus,
    Categories
    ==================== */
 .category-list-item {
-  background-color: var(--krew-surface-dark) !important;
+  background-color: var(--secondary-low) !important;
   border: var(--krew-border);
   border-radius: var(--krew-border-radius);
   margin-bottom: 0.5rem;
@@ -451,7 +380,7 @@ select:focus,
 }
 
 .category-list-item:hover {
-  border-color: var(--krew-primary);
+  border-color: var(--tertiary);
   box-shadow: var(--krew-glow);
 }
 
@@ -465,7 +394,7 @@ select:focus,
    ==================== */
 .user-card,
 .user-card-large {
-  background-color: var(--krew-surface-dark) !important;
+  background-color: var(--secondary-low) !important;
   border: var(--krew-border);
   border-radius: var(--krew-border-radius);
   box-shadow: var(--krew-glow);
@@ -473,7 +402,7 @@ select:focus,
 
 .user-card h1,
 .user-card h2 {
-  color: var(--krew-primary) !important;
+  color: var(--tertiary) !important;
 }
 
 /* Avatar glow for admins/captains */
@@ -486,19 +415,19 @@ select:focus,
    Notifications & Badges
    ==================== */
 .badge-notification {
-  background-color: var(--krew-primary) !important;
-  color: var(--krew-surface-darkest) !important;
+  background-color: var(--tertiary) !important;
+  color: var(--secondary) !important;
   font-weight: 600;
 }
 
 .badge-notification.unread-posts,
 .badge-notification.new-posts {
-  background-color: var(--krew-info) !important;
+  background-color: var(--quaternary) !important;
 }
 
 /* User badges */
 .user-badge {
-  background-color: var(--krew-surface-mid) !important;
+  background-color: var(--highlight-bg) !important;
   border: var(--krew-border);
   border-radius: var(--krew-border-radius);
 }
@@ -508,7 +437,7 @@ select:focus,
    ==================== */
 .modal-inner-container,
 .d-modal__container {
-  background-color: var(--krew-surface-dark) !important;
+  background-color: var(--secondary) !important;
   border: var(--krew-border);
   border-radius: 8px;
   box-shadow: var(--krew-glow-strong);
@@ -521,7 +450,7 @@ select:focus,
 
 .modal-header h3,
 .d-modal__title {
-  color: var(--krew-primary) !important;
+  color: var(--tertiary) !important;
   font-family: var(--krew-font-mono);
 }
 
@@ -529,20 +458,20 @@ select:focus,
    Chat
    ==================== */
 .chat-channel {
-  background-color: var(--krew-surface-dark) !important;
+  background-color: var(--secondary-low) !important;
   border: var(--krew-border);
 }
 
 .chat-message {
-  border-bottom: 1px solid var(--krew-surface-mid);
+  border-bottom: 1px solid var(--primary-low);
 }
 
 .chat-message:hover {
-  background-color: var(--krew-surface-mid) !important;
+  background-color: var(--highlight-bg) !important;
 }
 
 .chat-composer-input {
-  background-color: var(--krew-surface-mid) !important;
+  background-color: var(--secondary-low) !important;
   border: var(--krew-border);
 }
 
@@ -550,17 +479,17 @@ select:focus,
    Loading & Animations
    ==================== */
 .spinner {
-  border-color: var(--krew-primary) !important;
+  border-color: var(--tertiary) !important;
   border-right-color: transparent !important;
 }
 
 /* Page loading bar */
 #discourse-loading-spinner {
-  background-color: var(--krew-primary) !important;
+  background-color: var(--tertiary) !important;
   box-shadow: var(--krew-glow-strong);
 }
 
-/* Subtle scan line effect for sci-fi feel */
+/* Subtle scan line effect for sci-fi feel - only in dark mode */
 @keyframes scanline {
   0% {
     transform: translateY(-100%);
@@ -568,20 +497,6 @@ select:focus,
   100% {
     transform: translateY(100vh);
   }
-}
-
-body::after {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--krew-primary-glow), transparent);
-  pointer-events: none;
-  animation: scanline 6s linear infinite;
-  opacity: 0.3;
-  z-index: 9999;
 }
 
 /* ==================== 
@@ -593,31 +508,31 @@ body::after {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--krew-surface-darkest);
+  background: var(--secondary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--krew-surface-mid);
-  border: 1px solid rgba(57, 255, 20, 0.3);
+  background: var(--primary-low);
+  border: 1px solid color-mix(in srgb, var(--tertiary) 30%, transparent);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--krew-primary);
-  border-color: var(--krew-primary);
+  background: var(--tertiary);
+  border-color: var(--tertiary);
 }
 
 /* ==================== 
    Groups (SubKrewes)
    ==================== */
 .group-box {
-  background-color: var(--krew-surface-dark) !important;
+  background-color: var(--secondary-low) !important;
   border: var(--krew-border);
   border-radius: var(--krew-border-radius);
 }
 
 .group-box:hover {
-  border-color: var(--krew-primary);
+  border-color: var(--tertiary);
   box-shadow: var(--krew-glow);
 }
 
@@ -629,11 +544,11 @@ footer,
 .powered-by-discourse {
   background-color: transparent !important;
   border-top: var(--krew-border);
-  color: var(--krew-text-muted) !important;
+  color: var(--primary-medium) !important;
 }
 
 .powered-by-discourse a {
-  color: var(--krew-text-muted) !important;
+  color: var(--primary-medium) !important;
 }
 
 /* ==================== 
@@ -642,11 +557,11 @@ footer,
 .welcome-banner,
 .welcome-banner__header {
   background: transparent !important;
-  color: var(--krew-text) !important;
+  color: var(--primary) !important;
 }
 
 .welcome-banner__title {
-  color: var(--krew-text) !important;
+  color: var(--primary) !important;
 }
 
 /* ==================== 
@@ -654,7 +569,7 @@ footer,
    ==================== */
 .topic-excerpt,
 .category-description {
-  color: var(--krew-text-muted) !important;
+  color: var(--primary-medium) !important;
 }
 
 /* Numbers/stats */
@@ -662,7 +577,26 @@ footer,
 td.num,
 .views,
 .posts {
-  color: var(--krew-text-muted) !important;
+  color: var(--primary-medium) !important;
+}
+
+/* ==================== 
+   Dark Mode Specific - Scanline effect
+   ==================== */
+@media (prefers-color-scheme: dark) {
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--tertiary) 30%, transparent), transparent);
+    pointer-events: none;
+    animation: scanline 6s linear infinite;
+    opacity: 0.3;
+    z-index: 9999;
+  }
 }
 
 /* ==================== 
@@ -675,6 +609,6 @@ td.num,
   
   /* Disable scanline on mobile for performance */
   body::after {
-    display: none;
+    display: none !important;
   }
 }
