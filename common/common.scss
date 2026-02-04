@@ -399,6 +399,26 @@ nav.sidebar {
 }
 
 /* ==================== 
+   Button Groups & Containers
+   ==================== */
+.btn-group,
+.d-button-group,
+[class*="btn-group"],
+[class*="button-row"],
+[class*="actions"] {
+  display: flex;
+  gap: 0.25rem;
+}
+
+/* Adjacent buttons get margin */
+.btn + .btn,
+button + button,
+button + .btn,
+.btn + button {
+  margin-left: 0.25rem;
+}
+
+/* ==================== 
    Forms & Inputs
    ==================== */
 input[type="text"],
@@ -550,6 +570,11 @@ select:focus,
 .chat-composer,
 .chat-composer__wrapper,
 .chat-composer-container,
+.chat-composer-row,
+.chat-composer__outer-container,
+.chat-composer__inner-container,
+.chat-composer__input-container,
+.chat-composer__buttons,
 .chat-drawer,
 .chat-drawer-content,
 .chat-full-page-chat,
@@ -563,7 +588,8 @@ select:focus,
 /* Chat input textarea */
 .chat-composer-input textarea,
 .chat-composer textarea,
-.chat-composer .d-editor-input {
+.chat-composer .d-editor-input,
+.chat-composer .chat-composer-input {
   background-color: var(--secondary) !important;
   border: 1px solid var(--krew-border) !important;
   color: var(--primary) !important;
@@ -574,6 +600,46 @@ select:focus,
 .chat-channel-title {
   background-color: var(--secondary) !important;
   border-bottom: 1px solid var(--krew-border) !important;
+}
+
+/* Chat button containers - add spacing between buttons */
+.chat-composer-button-row,
+.chat-composer__send-btn-group,
+.chat-channel-row__buttons,
+.chat-channel-header__right-actions,
+.chat-drawer-header__right-actions,
+.chat-full-page-header__right-actions,
+.chat-composer-dropdown__trigger-container,
+.d-chat-btn-group {
+  display: flex;
+  gap: 0.5rem !important;
+}
+
+/* Ensure buttons in chat have proper margin */
+.chat-composer .btn,
+.chat-composer button,
+.chat-drawer .btn,
+.chat-drawer button,
+.chat-channel .btn,
+.chat-channel button,
+.chat-full-page-header .btn,
+.chat-full-page-header button {
+  margin: 0.125rem !important;
+}
+
+/* Header controls in chat */
+.chat-channel-header,
+.chat-drawer-header,
+.chat-full-page-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chat-channel-header .btn + .btn,
+.chat-drawer-header .btn + .btn,
+.chat-full-page-header .btn + .btn {
+  margin-left: 0.25rem;
 }
 
 /* ==================== 
