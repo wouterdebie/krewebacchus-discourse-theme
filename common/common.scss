@@ -390,6 +390,38 @@ nav.sidebar {
   border-color: var(--krew-border) !important;
 }
 
+/* Flat/Icon-only buttons - no border or background */
+.btn-flat,
+.btn.btn-flat,
+.btn-icon,
+.btn.btn-icon,
+.btn.no-text,
+.btn-transparent,
+.btn.btn-transparent,
+.chat-composer-dropdown__trigger-btn,
+.chat-emoji-btn,
+.chat-composer-button,
+.d-icon-button {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.btn-flat:hover,
+.btn.btn-flat:hover,
+.btn-icon:hover,
+.btn.btn-icon:hover,
+.btn.no-text:hover,
+.btn-transparent:hover,
+.btn.btn-transparent:hover,
+.chat-composer-dropdown__trigger-btn:hover,
+.chat-emoji-btn:hover,
+.chat-composer-button:hover,
+.d-icon-button:hover {
+  background: var(--krew-hover-bg) !important;
+  border: none !important;
+}
+
 .btn-danger,
 .btn.btn-danger {
   background-color: var(--danger) !important;
