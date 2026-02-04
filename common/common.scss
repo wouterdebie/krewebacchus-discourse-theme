@@ -279,37 +279,6 @@ nav.sidebar {
 /* ==================== 
    Topic View
    ==================== */
-.topic-body {
-  background-color: var(--krew-hover-bg) !important;
-  border: none !important;
-  border-radius: var(--krew-border-radius);
-  padding: 0.75rem 1rem !important;
-}
-
-/* Post row - remove left border */
-.post__row {
-  border-left: none !important;
-}
-
-.topic-post {
-  border-bottom: none !important;
-  padding: 0.5rem 0;
-}
-
-/* Topic map (views section) - align with post content, not avatar */
-.topic-map,
-.post__topic-map {
-  margin-left: 57px !important;  /* Skip avatar column width */
-  padding-left: 0 !important;
-}
-
-/* Post bottom area - align with post content */
-.topic-area .container,
-.post-stream + *,
-.topic-footer-main-buttons,
-.suggested-topics {
-  margin-left: 57px !important;
-}
 
 /* Hide "Powered by Discourse" footer */
 .powered-by-discourse {
@@ -321,11 +290,6 @@ nav.sidebar {
 .post-avatar a[data-user-card="system"] img.avatar {
   width: 32px !important;
   height: 32px !important;
-}
-
-/* General avatar container */
-.topic-avatar {
-  padding-right: 0.75rem;
 }
 
 /* Post content */
