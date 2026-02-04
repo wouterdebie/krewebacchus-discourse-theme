@@ -418,6 +418,16 @@ select,
   transition: all 0.2s ease;
 }
 
+/* Welcome banner search - remove double borders from nested elements */
+.search-input--welcome-banner input,
+.search-input--welcome-banner .search-term__input,
+.search-input--welcome-banner .btn,
+.search-input--welcome-banner button {
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
 input:focus,
 textarea:focus,
 select:focus,
