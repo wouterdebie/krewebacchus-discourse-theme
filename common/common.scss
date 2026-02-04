@@ -519,7 +519,7 @@ select:focus,
    Chat
    ==================== */
 .chat-channel {
-  background-color: var(--krew-hover-bg) !important;
+  background-color: var(--secondary) !important;
   border: 1px solid var(--krew-border);
 }
 
@@ -534,6 +534,36 @@ select:focus,
 .chat-composer-input {
   background-color: var(--krew-hover-bg) !important;
   border: 1px solid var(--krew-border);
+}
+
+/* Chat composer wrapper and container */
+.chat-composer,
+.chat-composer__wrapper,
+.chat-composer-container,
+.chat-drawer,
+.chat-drawer-content,
+.chat-full-page-chat,
+.chat-channel-preview-card,
+.chat-message-container,
+.chat-messages-container,
+.chat-messages-scroll {
+  background-color: var(--secondary) !important;
+}
+
+/* Chat input textarea */
+.chat-composer-input textarea,
+.chat-composer textarea,
+.chat-composer .d-editor-input {
+  background-color: var(--secondary) !important;
+  border: 1px solid var(--krew-border) !important;
+  color: var(--primary) !important;
+}
+
+/* Chat sidebar/drawer */
+.chat-drawer-header,
+.chat-channel-title {
+  background-color: var(--secondary) !important;
+  border-bottom: 1px solid var(--krew-border) !important;
 }
 
 /* ==================== 
