@@ -1,7 +1,6 @@
 /* Krewebacchus Discourse Theme
  * Cyberpunk/sci-fi styling to match the main webapp
- * Primary: Neon Green #39FF14 (dark) / #23B00D (light)
- * Supports both light and dark modes
+ * Dark mode is default - matches krewebacchus.org
  */
 
 /* ==================== 
@@ -24,80 +23,159 @@
 }
 
 /* ==================== 
-   CSS Variables - Light Mode (default)
+   CSS Variables - Dark Mode (default)
+   Override ALL Discourse CSS custom properties
    ==================== */
 :root {
-  /* Brand Colors - Light Mode */
-  --krew-primary: #23B00D;
-  --krew-primary-hover: #1A8A0A;
-  --krew-primary-glow: rgba(35, 176, 13, 0.2);
-  
-  /* Surface Colors - Light Mode */
-  --krew-bg: #F8FAFF;
-  --krew-bg-secondary: #F0F5FF;
-  --krew-surface: #FFFFFF;
-  --krew-surface-hover: #E5EEFF;
-  --krew-border-color: rgba(35, 176, 13, 0.3);
-  --krew-text: #121B29;
-  --krew-text-muted: #4060B0;
-  
-  /* Accent Colors */
-  --krew-danger: #E03655;
-  --krew-warning: #E09A12;
-  --krew-info: #12B8E9;
-  --krew-success: #12E975;
+  /* Krewebacchus brand colors */
+  --krew-primary: #39FF14;
+  --krew-primary-hover: #65FF3C;
+  --krew-primary-glow: rgba(57, 255, 20, 0.3);
+  --krew-surface-darkest: #0A1018;
+  --krew-surface-dark: #121B29;
+  --krew-surface-mid: #1a2636;
+  --krew-surface-light: #253344;
+  --krew-text: #F8FAFF;
+  --krew-text-muted: #8A9BAD;
   
   /* Typography */
   --krew-font-mono: "Courier New", Courier, monospace;
   
-  /* Effects */
-  --krew-glow: 0 0 10px var(--krew-primary-glow);
-  --krew-glow-strong: 0 0 15px var(--krew-primary-glow), 0 0 30px rgba(35, 176, 13, 0.1);
-  --krew-border: 1px solid var(--krew-border-color);
-  --krew-border-radius: 0 8px 0 8px;
-  --krew-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* ==================== 
-   CSS Variables - Dark Mode
-   ==================== */
-html.dark-theme {
-  /* Brand Colors - Dark Mode (brighter neon) */
-  --krew-primary: #39FF14;
-  --krew-primary-hover: #65FF3C;
-  --krew-primary-glow: rgba(57, 255, 20, 0.3);
-  
-  /* Surface Colors - Dark Mode */
-  --krew-bg: #0A1018;
-  --krew-bg-secondary: #121B29;
-  --krew-surface: #121B29;
-  --krew-surface-hover: #202850;
-  --krew-border-color: rgba(57, 255, 20, 0.3);
-  --krew-text: #F8FAFF;
-  --krew-text-muted: #A0C0FF;
-  
-  /* Accent Colors - Brighter for dark mode */
+  /* Accent Colors */
   --krew-danger: #FF3E5E;
   --krew-warning: #FFB114;
   --krew-info: #14CFFF;
   --krew-success: #14FF83;
   
-  /* Effects - Stronger glow in dark mode */
+  /* Override Discourse's CSS properties */
+  --primary: #F8FAFF !important;
+  --primary-rgb: 248, 250, 255 !important;
+  --secondary: #0A1018 !important;
+  --secondary-rgb: 10, 16, 24 !important;
+  --tertiary: #39FF14 !important;
+  --tertiary-rgb: 57, 255, 20 !important;
+  --quaternary: #8A9BAD !important;
+  --header_background: #121B29 !important;
+  --header_primary: #F8FAFF !important;
+  --highlight: rgba(57, 255, 20, 0.15) !important;
+  --highlight-bg: rgba(57, 255, 20, 0.1) !important;
+  --success: #39FF14 !important;
+  --love: #39FF14 !important;
+  --danger: #FF3E5E !important;
+  --warning: #FFB114 !important;
+  
+  /* Primary shades */
+  --primary-low: rgba(248, 250, 255, 0.1) !important;
+  --primary-low-rgb: 248, 250, 255 !important;
+  --primary-low-mid: rgba(248, 250, 255, 0.2) !important;
+  --primary-medium: rgba(248, 250, 255, 0.4) !important;
+  --primary-high: rgba(248, 250, 255, 0.75) !important;
+  --primary-very-high: rgba(248, 250, 255, 0.85) !important;
+  --primary-50: rgba(248, 250, 255, 0.05) !important;
+  --primary-100: rgba(248, 250, 255, 0.1) !important;
+  --primary-200: rgba(248, 250, 255, 0.2) !important;
+  --primary-300: rgba(248, 250, 255, 0.3) !important;
+  --primary-400: rgba(248, 250, 255, 0.4) !important;
+  --primary-500: rgba(248, 250, 255, 0.5) !important;
+  --primary-600: rgba(248, 250, 255, 0.6) !important;
+  --primary-700: rgba(248, 250, 255, 0.7) !important;
+  --primary-800: rgba(248, 250, 255, 0.8) !important;
+  --primary-900: rgba(248, 250, 255, 0.9) !important;
+  
+  /* Secondary shades (backgrounds) */
+  --secondary-low: #1a2636 !important;
+  --secondary-medium: #253344 !important;
+  --secondary-high: #344455 !important;
+  --secondary-very-high: #445566 !important;
+  --secondary-50: #0c1219 !important;
+  --secondary-100: #0e1520 !important;
+  --secondary-200: #121B29 !important;
+  --secondary-300: #1a2636 !important;
+  --secondary-400: #253344 !important;
+  --secondary-500: #344455 !important;
+  --secondary-600: #445566 !important;
+  --secondary-700: #556677 !important;
+  --secondary-800: #667788 !important;
+  --secondary-900: #778899 !important;
+  
+  /* Tertiary shades (green accent) */
+  --tertiary-low: rgba(57, 255, 20, 0.1) !important;
+  --tertiary-medium: rgba(57, 255, 20, 0.4) !important;
+  --tertiary-high: rgba(57, 255, 20, 0.75) !important;
+  --tertiary-hover: #65FF3C !important;
+  
+  /* Effects */
   --krew-glow: 0 0 10px var(--krew-primary-glow);
   --krew-glow-strong: 0 0 15px var(--krew-primary-glow), 0 0 30px rgba(57, 255, 20, 0.15);
-  --krew-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --krew-border: 1px solid rgba(57, 255, 20, 0.3);
+  --krew-border-radius: 0 8px 0 8px;
 }
 
 /* ==================== 
-   Global Styles
+   Force Dark Backgrounds Everywhere
    ==================== */
+html {
+  background: var(--krew-surface-darkest) !important;
+}
 
 body {
-  background-color: var(--krew-bg) !important;
-  color: var(--krew-text);
+  background-color: var(--krew-surface-darkest) !important;
+  color: var(--krew-text) !important;
   font-family: var(--krew-font-mono);
   font-weight: 500;
 }
+
+/* Force backgrounds on all major content areas */
+#main-outlet,
+.wrap,
+.full-width,
+.container,
+.contents,
+.d-body,
+.ember-application,
+.topic-body,
+.topic-area,
+.topic-list,
+.list-container,
+.topic-list-container,
+.topic-post,
+.post-stream,
+.cooked,
+main,
+nav,
+aside,
+section,
+article,
+.user-content-wrapper,
+.user-main,
+.user-preferences,
+.admin-contents,
+.show-more {
+  background-color: var(--krew-surface-darkest) !important;
+}
+
+/* Table rows must be dark */
+.topic-list-item,
+.topic-list-item td,
+.topic-list tbody tr,
+table.topic-list tbody tr,
+.latest-topic-list-item,
+.category-list-item,
+tr {
+  background-color: var(--krew-surface-darkest) !important;
+}
+
+/* Transparent elements - avoid double backgrounds */
+.full-width,
+.contents,
+.topic-list,
+.category-list {
+  background-color: transparent !important;
+}
+
+/* ==================== 
+   Typography
+   ==================== */
 
 /* Headings use Starjedi (Star Wars style) */
 h1, h2, h3,
@@ -108,6 +186,7 @@ h1, h2, h3,
   font-weight: 500;
   text-transform: lowercase;
   letter-spacing: 0.05em;
+  color: var(--krew-text) !important;
 }
 
 /* Category/section headers use VideoPhreak */
@@ -119,73 +198,13 @@ h1, h2, h3,
 }
 
 /* ==================== 
-   Dark Mode Overrides - Force dark backgrounds
-   ==================== */
-html.dark-theme,
-html[data-color-scheme="dark"],
-body.dark-theme {
-  /* Override Discourse's CSS custom properties */
-  --secondary: #0A1018 !important;
-  --secondary-rgb: 10, 16, 24 !important;
-  --primary: #F8FAFF !important;
-  --primary-rgb: 248, 250, 255 !important;
-  --tertiary: #39FF14 !important;
-  --tertiary-rgb: 57, 255, 20 !important;
-  --header_background: #0A1018 !important;
-  --header_primary: #39FF14 !important;
-  --highlight: #304080 !important;
-  --highlight-bg: rgba(48, 64, 128, 0.5) !important;
-  
-  background-color: #0A1018 !important;
-}
-
-html.dark-theme body,
-html[data-color-scheme="dark"] body,
-html.dark-theme #main-outlet,
-html[data-color-scheme="dark"] #main-outlet,
-html.dark-theme .d-body,
-html.dark-theme .wrap,
-html.dark-theme .ember-application,
-html.dark-theme .topic-body,
-html.dark-theme .user-content-wrapper,
-html.dark-theme .user-main,
-html.dark-theme .user-preferences,
-html.dark-theme .admin-contents,
-html.dark-theme .container,
-html.dark-theme .list-container,
-html.dark-theme .show-more,
-html.dark-theme .topic-list-item,
-html.dark-theme .latest-topic-list-item {
-  background-color: #0A1018 !important;
-}
-
-html.dark-theme .full-width,
-html.dark-theme .contents,
-html.dark-theme .topic-list,
-html.dark-theme .category-list {
-  background-color: transparent !important;
-}
-
-/* Main content area */
-#main-outlet {
-  background-color: var(--krew-bg);
-}
-
-/* ==================== 
    Header
    ==================== */
-.d-header-wrap {
-  background: linear-gradient(180deg, var(--krew-bg) 0%, var(--krew-bg-secondary) 100%);
-  border-bottom: var(--krew-border);
-  box-shadow: var(--krew-shadow);
-}
-
-html.dark-theme .d-header-wrap {
-  box-shadow: var(--krew-glow);
-}
-
+.d-header-wrap,
 .d-header {
-  background: transparent;
+  background: var(--krew-surface-dark) !important;
+  border-bottom: 2px solid var(--krew-primary) !important;
+  box-shadow: var(--krew-glow);
 }
 
 /* Logo glow effect */
@@ -196,25 +215,55 @@ html.dark-theme .d-header-wrap {
 
 /* Header icons */
 .d-header-icons .icon {
-  color: var(--krew-primary);
+  color: var(--krew-primary) !important;
   transition: all 0.3s ease;
 }
 
 .d-header-icons .icon:hover {
-  color: var(--krew-primary);
+  color: var(--krew-primary-hover) !important;
   filter: drop-shadow(0 0 8px var(--krew-primary-glow));
+}
+
+/* ==================== 
+   Links
+   ==================== */
+a,
+.title a,
+.topic-list .main-link a.title,
+.topic-list-item .title,
+.sidebar-section-link-wrapper a,
+.nav-pills > li > a {
+  color: var(--krew-primary) !important;
+  transition: all 0.2s ease;
+}
+
+a:hover,
+.topic-list-item .title:hover {
+  color: var(--krew-primary-hover) !important;
+}
+
+/* Muted/secondary links */
+.topic-list .link-bottom-line a,
+.link-bottom-line a {
+  color: var(--krew-text-muted) !important;
 }
 
 /* ==================== 
    Navigation & Sidebar
    ==================== */
-.sidebar-wrapper {
-  background-color: var(--krew-bg-secondary);
+.sidebar-wrapper,
+.sidebar-container,
+.sidebar-sections,
+.sidebar-section,
+.sidebar-section-wrapper,
+.sidebar-section-content,
+nav.sidebar {
+  background-color: var(--krew-surface-darkest) !important;
   border-right: var(--krew-border);
 }
 
 .sidebar-section-header-wrapper {
-  color: var(--krew-primary);
+  color: var(--krew-primary) !important;
   font-family: var(--krew-font-mono);
   text-transform: uppercase;
   font-size: 0.75rem;
@@ -224,15 +273,12 @@ html.dark-theme .d-header-wrap {
 .sidebar-section-link {
   border-radius: var(--krew-border-radius);
   transition: all 0.2s ease;
+  color: var(--krew-text) !important;
 }
 
 .sidebar-section-link:hover,
 .sidebar-section-link.active {
-  background-color: var(--krew-surface-hover);
-}
-
-html.dark-theme .sidebar-section-link:hover,
-html.dark-theme .sidebar-section-link.active {
+  background-color: var(--krew-surface-mid) !important;
   box-shadow: inset 0 0 10px var(--krew-primary-glow);
 }
 
@@ -243,97 +289,79 @@ html.dark-theme .sidebar-section-link.active {
 /* ==================== 
    Topic List
    ==================== */
-.topic-list {
-  background-color: transparent;
-}
-
-.topic-list-item {
-  background-color: var(--krew-surface);
-  border: var(--krew-border);
-  border-radius: var(--krew-border-radius);
-  margin-bottom: 0.5rem;
-  transition: all 0.2s ease;
-  box-shadow: var(--krew-shadow);
-}
-
-.topic-list-item:hover {
-  border-color: var(--krew-primary);
-}
-
-html.dark-theme .topic-list-item:hover {
-  box-shadow: var(--krew-glow);
-}
-
-.topic-list th {
-  color: var(--krew-primary);
+.topic-list th,
+.topic-list-header {
+  color: var(--krew-primary) !important;
   font-family: var(--krew-font-mono);
   text-transform: uppercase;
   font-size: 0.7rem;
   letter-spacing: 0.1em;
-  border-bottom: var(--krew-border);
+  border-bottom: var(--krew-border) !important;
+  background: transparent !important;
 }
 
-/* Topic titles */
-.topic-list-item .title {
-  color: var(--krew-text);
+.topic-list-item {
+  border-bottom: 1px solid var(--krew-surface-mid) !important;
+  transition: all 0.2s ease;
 }
 
-.topic-list-item .title:hover {
-  color: var(--krew-primary);
+.topic-list-item:hover {
+  background-color: var(--krew-surface-mid) !important;
+  box-shadow: var(--krew-glow);
 }
 
 /* Pinned topics */
 .topic-list-item.pinned .title::before {
-  color: var(--krew-warning);
+  color: var(--krew-warning) !important;
 }
 
 /* ==================== 
    Topic View
    ==================== */
 .topic-body {
-  background-color: var(--krew-surface);
+  background-color: var(--krew-surface-dark) !important;
   border: var(--krew-border);
   border-radius: var(--krew-border-radius);
 }
 
 .topic-post {
-  border-bottom: 1px solid var(--krew-border-color);
+  border-bottom: 1px solid var(--krew-surface-mid);
 }
 
 /* Post content */
 .cooked {
-  color: var(--krew-text);
+  color: var(--krew-text) !important;
 }
 
 .cooked a {
-  color: var(--krew-info);
+  color: var(--krew-info) !important;
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: all 0.2s ease;
 }
 
 .cooked a:hover {
-  color: var(--krew-primary);
+  color: var(--krew-primary) !important;
   border-bottom-color: var(--krew-primary);
 }
 
 /* Code blocks */
 .cooked pre,
 .cooked code {
-  background-color: var(--krew-bg-secondary);
+  background-color: var(--krew-surface-mid) !important;
   border: var(--krew-border);
   border-radius: var(--krew-border-radius);
   font-family: var(--krew-font-mono);
 }
 
 .cooked pre code {
-  color: var(--krew-primary);
+  color: var(--krew-primary) !important;
 }
 
 /* Blockquotes */
 .cooked blockquote {
-  background-color: rgba(20, 207, 255, 0.05);
-  border-left: 3px solid var(--krew-info);
+  background-color: rgba(20, 207, 255, 0.1) !important;
+  border-left: 3px solid var(--krew-info) !important;
   padding-left: 1rem;
 }
 
@@ -342,44 +370,44 @@ html.dark-theme .topic-list-item:hover {
    ==================== */
 .btn-primary,
 .btn.btn-primary {
-  background: linear-gradient(135deg, var(--krew-primary-dark) 0%, var(--krew-primary) 100%);
-  border: none;
-  color: var(--krew-surface-950);
+  background: var(--krew-primary) !important;
+  border: none !important;
+  color: var(--krew-surface-darkest) !important;
   font-weight: 600;
   border-radius: var(--krew-border-radius);
   transition: all 0.3s ease;
-  text-shadow: none;
+  text-shadow: none !important;
 }
 
 .btn-primary:hover,
 .btn.btn-primary:hover {
+  background: var(--krew-primary-hover) !important;
   box-shadow: var(--krew-glow-strong);
   transform: translateY(-1px);
 }
 
 .btn-default,
-.btn.btn-default {
-  background-color: var(--krew-surface-800);
-  border: var(--krew-border);
-  color: var(--krew-primary);
+.btn.btn-default,
+.btn {
+  background-color: var(--krew-surface-dark) !important;
+  border: var(--krew-border) !important;
+  color: var(--krew-text) !important;
   border-radius: var(--krew-border-radius);
   transition: all 0.2s ease;
 }
 
 .btn-default:hover,
-.btn.btn-default:hover {
-  background-color: var(--krew-surface-hover);
-}
-
-html.dark-theme .btn-default:hover,
-html.dark-theme .btn.btn-default:hover {
+.btn.btn-default:hover,
+.btn:hover {
+  background-color: var(--krew-surface-mid) !important;
   box-shadow: var(--krew-glow);
 }
 
 .btn-danger,
 .btn.btn-danger {
-  background-color: var(--krew-danger);
-  border: none;
+  background-color: var(--krew-danger) !important;
+  border: none !important;
+  color: white !important;
   border-radius: var(--krew-border-radius);
 }
 
@@ -392,11 +420,13 @@ input[type="password"],
 input[type="search"],
 textarea,
 select,
-.select-kit .select-kit-header {
-  background-color: var(--krew-surface);
-  border: var(--krew-border);
+.select-kit .select-kit-header,
+.search-input,
+.search-container .search-input {
+  background-color: var(--krew-surface-dark) !important;
+  border: var(--krew-border) !important;
   border-radius: var(--krew-border-radius);
-  color: var(--krew-text);
+  color: var(--krew-text) !important;
   transition: all 0.2s ease;
 }
 
@@ -404,32 +434,16 @@ input:focus,
 textarea:focus,
 select:focus,
 .select-kit.is-expanded .select-kit-header {
-  border-color: var(--krew-primary);
+  border-color: var(--krew-primary) !important;
   outline: none;
-}
-
-html.dark-theme input:focus,
-html.dark-theme textarea:focus,
-html.dark-theme select:focus,
-html.dark-theme .select-kit.is-expanded .select-kit-header {
   box-shadow: var(--krew-glow);
-}
-
-/* Search */
-.search-container .search-input {
-  background-color: var(--krew-surface);
-  border: var(--krew-border);
 }
 
 /* ==================== 
    Categories
    ==================== */
-.category-list {
-  background-color: transparent;
-}
-
 .category-list-item {
-  background-color: var(--krew-surface);
+  background-color: var(--krew-surface-dark) !important;
   border: var(--krew-border);
   border-radius: var(--krew-border-radius);
   margin-bottom: 0.5rem;
@@ -438,9 +452,6 @@ html.dark-theme .select-kit.is-expanded .select-kit-header {
 
 .category-list-item:hover {
   border-color: var(--krew-primary);
-}
-
-html.dark-theme .category-list-item:hover {
   box-shadow: var(--krew-glow);
 }
 
@@ -454,20 +465,15 @@ html.dark-theme .category-list-item:hover {
    ==================== */
 .user-card,
 .user-card-large {
-  background-color: var(--krew-surface);
+  background-color: var(--krew-surface-dark) !important;
   border: var(--krew-border);
   border-radius: var(--krew-border-radius);
-  box-shadow: var(--krew-shadow);
-}
-
-html.dark-theme .user-card,
-html.dark-theme .user-card-large {
   box-shadow: var(--krew-glow);
 }
 
 .user-card h1,
 .user-card h2 {
-  color: var(--krew-primary);
+  color: var(--krew-primary) !important;
 }
 
 /* Avatar glow for admins/captains */
@@ -480,23 +486,19 @@ html.dark-theme .user-card-large {
    Notifications & Badges
    ==================== */
 .badge-notification {
-  background-color: var(--krew-primary);
-  color: white;
+  background-color: var(--krew-primary) !important;
+  color: var(--krew-surface-darkest) !important;
   font-weight: 600;
-}
-
-html.dark-theme .badge-notification {
-  color: var(--krew-bg);
 }
 
 .badge-notification.unread-posts,
 .badge-notification.new-posts {
-  background-color: var(--krew-info);
+  background-color: var(--krew-info) !important;
 }
 
 /* User badges */
 .user-badge {
-  background-color: var(--krew-surface-hover);
+  background-color: var(--krew-surface-mid) !important;
   border: var(--krew-border);
   border-radius: var(--krew-border-radius);
 }
@@ -506,14 +508,9 @@ html.dark-theme .badge-notification {
    ==================== */
 .modal-inner-container,
 .d-modal__container {
-  background-color: var(--krew-surface);
+  background-color: var(--krew-surface-dark) !important;
   border: var(--krew-border);
   border-radius: 8px;
-  box-shadow: var(--krew-shadow);
-}
-
-html.dark-theme .modal-inner-container,
-html.dark-theme .d-modal__container {
   box-shadow: var(--krew-glow-strong);
 }
 
@@ -524,7 +521,7 @@ html.dark-theme .d-modal__container {
 
 .modal-header h3,
 .d-modal__title {
-  color: var(--krew-primary);
+  color: var(--krew-primary) !important;
   font-family: var(--krew-font-mono);
 }
 
@@ -532,20 +529,20 @@ html.dark-theme .d-modal__container {
    Chat
    ==================== */
 .chat-channel {
-  background-color: var(--krew-surface);
+  background-color: var(--krew-surface-dark) !important;
   border: var(--krew-border);
 }
 
 .chat-message {
-  border-bottom: 1px solid var(--krew-border-color);
+  border-bottom: 1px solid var(--krew-surface-mid);
 }
 
 .chat-message:hover {
-  background-color: var(--krew-surface-hover);
+  background-color: var(--krew-surface-mid) !important;
 }
 
 .chat-composer-input {
-  background-color: var(--krew-bg-secondary);
+  background-color: var(--krew-surface-mid) !important;
   border: var(--krew-border);
 }
 
@@ -553,17 +550,17 @@ html.dark-theme .d-modal__container {
    Loading & Animations
    ==================== */
 .spinner {
-  border-color: var(--krew-primary);
-  border-right-color: transparent;
+  border-color: var(--krew-primary) !important;
+  border-right-color: transparent !important;
 }
 
 /* Page loading bar */
 #discourse-loading-spinner {
-  background-color: var(--krew-primary);
+  background-color: var(--krew-primary) !important;
   box-shadow: var(--krew-glow-strong);
 }
 
-/* Subtle scan line effect for sci-fi feel - dark mode only */
+/* Subtle scan line effect for sci-fi feel */
 @keyframes scanline {
   0% {
     transform: translateY(-100%);
@@ -573,7 +570,7 @@ html.dark-theme .d-modal__container {
   }
 }
 
-html.dark-theme body::after {
+body::after {
   content: "";
   position: fixed;
   top: 0;
@@ -596,12 +593,12 @@ html.dark-theme body::after {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--krew-bg);
+  background: var(--krew-surface-darkest);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--krew-surface-hover);
-  border: 1px solid var(--krew-border-color);
+  background: var(--krew-surface-mid);
+  border: 1px solid rgba(57, 255, 20, 0.3);
   border-radius: 4px;
 }
 
@@ -614,16 +611,13 @@ html.dark-theme body::after {
    Groups (SubKrewes)
    ==================== */
 .group-box {
-  background-color: var(--krew-surface);
+  background-color: var(--krew-surface-dark) !important;
   border: var(--krew-border);
   border-radius: var(--krew-border-radius);
 }
 
 .group-box:hover {
   border-color: var(--krew-primary);
-}
-
-html.dark-theme .group-box:hover {
   box-shadow: var(--krew-glow);
 }
 
@@ -631,9 +625,44 @@ html.dark-theme .group-box:hover {
    Footer
    ==================== */
 .custom-footer,
-footer {
-  background-color: var(--krew-bg);
+footer,
+.powered-by-discourse {
+  background-color: transparent !important;
   border-top: var(--krew-border);
+  color: var(--krew-text-muted) !important;
+}
+
+.powered-by-discourse a {
+  color: var(--krew-text-muted) !important;
+}
+
+/* ==================== 
+   Welcome banner
+   ==================== */
+.welcome-banner,
+.welcome-banner__header {
+  background: transparent !important;
+  color: var(--krew-text) !important;
+}
+
+.welcome-banner__title {
+  color: var(--krew-text) !important;
+}
+
+/* ==================== 
+   Text colors
+   ==================== */
+.topic-excerpt,
+.category-description {
+  color: var(--krew-text-muted) !important;
+}
+
+/* Numbers/stats */
+.topic-list .num,
+td.num,
+.views,
+.posts {
+  color: var(--krew-text-muted) !important;
 }
 
 /* ==================== 
@@ -643,11 +672,9 @@ footer {
   .topic-list-item {
     border-radius: 4px;
   }
-}
-
-html.dark-theme body::after {
+  
   /* Disable scanline on mobile for performance */
-  @media (max-width: 768px) {
+  body::after {
     display: none;
   }
 }
