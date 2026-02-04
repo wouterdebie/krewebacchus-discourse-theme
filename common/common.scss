@@ -23,16 +23,22 @@
 }
 
 /* ==================== 
-   CSS Variables
-   Use Discourse's color scheme variables which are set by about.json
-   --primary = text color (light in dark mode, dark in light mode)
-   --secondary = background color (dark in dark mode, light in light mode)
-   --tertiary = accent color (green - neon in dark, darker in light)
+   CSS Variables - Custom tints using color-mix()
+   Discourse's auto-calculated --primary-low, --tertiary-low etc are broken (compute to blue)
+   We create our own reliable tints here
    ==================== */
 :root {
   /* Typography */
   --krew-font-mono: "Courier New", Courier, monospace;
   --krew-border-radius: 0 8px 0 8px;
+  
+  /* Custom tints - using color-mix for scheme-adaptive colors */
+  /* 10% primary mixed with 90% secondary = subtle border/hover tint */
+  --krew-tint-10: color-mix(in srgb, var(--primary) 10%, var(--secondary));
+  /* 5% primary = very subtle background tint */
+  --krew-tint-5: color-mix(in srgb, var(--primary) 5%, var(--secondary));
+  /* 15% tertiary = subtle accent tint for hovers */
+  --krew-accent-tint: color-mix(in srgb, var(--tertiary) 15%, var(--secondary));
 }
 
 /* ==================== 
@@ -133,7 +139,7 @@ h1, h2, h3,
 /* Logo glow effect - subtle */
 .d-header .logo-big,
 .d-header .logo-small {
-  filter: drop-shadow(0 0 4px var(--primary-low));
+  filter: drop-shadow(0 0 4px var(--krew-tint-10));
 }
 
 /* Header icons */
@@ -181,7 +187,7 @@ a:hover,
 .sidebar-section-content,
 nav.sidebar {
   background-color: var(--secondary) !important;
-  border-right: 1px solid var(--primary-low);
+  border-right: 1px solid var(--krew-tint-10);
 }
 
 .sidebar-section-header-wrapper {
@@ -200,8 +206,8 @@ nav.sidebar {
 
 .sidebar-section-link:hover,
 .sidebar-section-link.active {
-  background-color: var(--primary-very-low) !important;
-  box-shadow: inset 0 0 10px var(--primary-very-low);
+  background-color: var(--krew-tint-5) !important;
+  box-shadow: inset 0 0 10px var(--krew-tint-5);
 }
 
 .sidebar-section-link.active {
@@ -218,18 +224,18 @@ nav.sidebar {
   text-transform: uppercase;
   font-size: 0.7rem;
   letter-spacing: 0.1em;
-  border-bottom: 1px solid var(--primary-low) !important;
+  border-bottom: 1px solid var(--krew-tint-10) !important;
   background: transparent !important;
 }
 
 .topic-list-item {
-  border-bottom: 1px solid var(--primary-low) !important;
+  border-bottom: 1px solid var(--krew-tint-10) !important;
   transition: all 0.2s ease;
 }
 
 .topic-list-item:hover {
-  background-color: var(--primary-very-low) !important;
-  box-shadow: 0 0 10px var(--primary-very-low);
+  background-color: var(--krew-tint-5) !important;
+  box-shadow: 0 0 10px var(--krew-tint-5);
 }
 
 /* Pinned topics */
@@ -241,13 +247,13 @@ nav.sidebar {
    Topic View
    ==================== */
 .topic-body {
-  background-color: var(--primary-very-low) !important;
-  border: 1px solid var(--primary-low);
+  background-color: var(--krew-tint-5) !important;
+  border: 1px solid var(--krew-tint-10);
   border-radius: var(--krew-border-radius);
 }
 
 .topic-post {
-  border-bottom: 1px solid var(--primary-low);
+  border-bottom: 1px solid var(--krew-tint-10);
 }
 
 /* Post content */
@@ -270,8 +276,8 @@ nav.sidebar {
 /* Code blocks */
 .cooked pre,
 .cooked code {
-  background-color: var(--primary-very-low) !important;
-  border: 1px solid var(--primary-low);
+  background-color: var(--krew-tint-5) !important;
+  border: 1px solid var(--krew-tint-10);
   border-radius: var(--krew-border-radius);
   font-family: var(--krew-font-mono);
 }
@@ -327,7 +333,7 @@ nav.sidebar {
 .btn-primary:hover,
 .btn.btn-primary:hover,
 .btn.btn-primary.login-button:hover {
-  box-shadow: 0 0 10px var(--primary-low);
+  box-shadow: 0 0 10px var(--krew-tint-10);
   transform: translateY(-1px);
 }
 
@@ -337,8 +343,8 @@ nav.sidebar {
 .btn-default,
 .btn.btn-default,
 .btn {
-  background-color: var(--primary-very-low) !important;
-  border: 1px solid var(--primary-low) !important;
+  background-color: var(--krew-tint-5) !important;
+  border: 1px solid var(--krew-tint-10) !important;
   color: var(--primary) !important;
   border-radius: var(--krew-border-radius);
   transition: all 0.2s ease;
@@ -347,8 +353,8 @@ nav.sidebar {
 .btn-default:hover,
 .btn.btn-default:hover,
 .btn:hover {
-  background-color: var(--primary-very-low) !important;
-  border-color: var(--primary-low) !important;
+  background-color: var(--krew-tint-5) !important;
+  border-color: var(--krew-tint-10) !important;
 }
 
 .btn-danger,
@@ -372,8 +378,8 @@ select,
 .search-input,
 .search-input--welcome-banner,
 .search-container .search-input {
-  background-color: var(--primary-very-low) !important;
-  border: 1px solid var(--primary-low) !important;
+  background-color: var(--krew-tint-5) !important;
+  border: 1px solid var(--krew-tint-10) !important;
   border-radius: var(--krew-border-radius);
   color: var(--primary) !important;
   transition: all 0.2s ease;
@@ -387,15 +393,15 @@ select:focus,
 .select-kit.is-expanded .select-kit-header {
   border-color: var(--tertiary) !important;
   outline: none;
-  box-shadow: 0 0 5px var(--primary-low);
+  box-shadow: 0 0 5px var(--krew-tint-10);
 }
 
 /* ==================== 
    Categories
    ==================== */
 .category-list-item {
-  background-color: var(--primary-very-low) !important;
-  border: 1px solid var(--primary-low);
+  background-color: var(--krew-tint-5) !important;
+  border: 1px solid var(--krew-tint-10);
   border-radius: var(--krew-border-radius);
   margin-bottom: 0.5rem;
   transition: all 0.2s ease;
@@ -403,7 +409,7 @@ select:focus,
 
 .category-list-item:hover {
   border-color: var(--tertiary);
-  box-shadow: 0 0 10px var(--primary-low);
+  box-shadow: 0 0 10px var(--krew-tint-10);
 }
 
 /* Category badges */
@@ -416,10 +422,10 @@ select:focus,
    ==================== */
 .user-card,
 .user-card-large {
-  background-color: var(--primary-very-low) !important;
-  border: 1px solid var(--primary-low);
+  background-color: var(--krew-tint-5) !important;
+  border: 1px solid var(--krew-tint-10);
   border-radius: var(--krew-border-radius);
-  box-shadow: 0 0 10px var(--primary-low);
+  box-shadow: 0 0 10px var(--krew-tint-10);
 }
 
 .user-card h1,
@@ -430,7 +436,7 @@ select:focus,
 /* Avatar glow for admins/captains */
 .user-card.admin .avatar-flair,
 .user-card.moderator .avatar-flair {
-  box-shadow: 0 0 15px var(--primary-low), 0 0 30px var(--primary-very-low);
+  box-shadow: 0 0 15px var(--krew-tint-10), 0 0 30px var(--krew-tint-5);
 }
 
 /* ==================== 
@@ -449,8 +455,8 @@ select:focus,
 
 /* User badges */
 .user-badge {
-  background-color: var(--primary-very-low) !important;
-  border: 1px solid var(--primary-low);
+  background-color: var(--krew-tint-5) !important;
+  border: 1px solid var(--krew-tint-10);
   border-radius: var(--krew-border-radius);
 }
 
@@ -460,14 +466,14 @@ select:focus,
 .modal-inner-container,
 .d-modal__container {
   background-color: var(--secondary) !important;
-  border: 1px solid var(--primary-low);
+  border: 1px solid var(--krew-tint-10);
   border-radius: 8px;
-  box-shadow: 0 0 15px var(--primary-low), 0 0 30px var(--primary-very-low);
+  box-shadow: 0 0 15px var(--krew-tint-10), 0 0 30px var(--krew-tint-5);
 }
 
 .modal-header,
 .d-modal__header {
-  border-bottom: 1px solid var(--primary-low);
+  border-bottom: 1px solid var(--krew-tint-10);
 }
 
 .modal-header h3,
@@ -480,21 +486,21 @@ select:focus,
    Chat
    ==================== */
 .chat-channel {
-  background-color: var(--primary-very-low) !important;
-  border: 1px solid var(--primary-low);
+  background-color: var(--krew-tint-5) !important;
+  border: 1px solid var(--krew-tint-10);
 }
 
 .chat-message {
-  border-bottom: 1px solid var(--primary-low);
+  border-bottom: 1px solid var(--krew-tint-10);
 }
 
 .chat-message:hover {
-  background-color: var(--primary-very-low) !important;
+  background-color: var(--krew-tint-5) !important;
 }
 
 .chat-composer-input {
-  background-color: var(--primary-very-low) !important;
-  border: 1px solid var(--primary-low);
+  background-color: var(--krew-tint-5) !important;
+  border: 1px solid var(--krew-tint-10);
 }
 
 /* ==================== 
@@ -508,7 +514,7 @@ select:focus,
 /* Page loading bar */
 #discourse-loading-spinner {
   background-color: var(--tertiary) !important;
-  box-shadow: 0 0 15px var(--primary-low), 0 0 30px var(--primary-very-low);
+  box-shadow: 0 0 15px var(--krew-tint-10), 0 0 30px var(--krew-tint-5);
 }
 
 /* Subtle scan line effect for sci-fi feel */
@@ -534,8 +540,8 @@ select:focus,
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-low);
-  border: 1px solid var(--primary-low);
+  background: var(--krew-tint-10);
+  border: 1px solid var(--krew-tint-10);
   border-radius: 4px;
 }
 
@@ -548,14 +554,14 @@ select:focus,
    Groups (SubKrewes)
    ==================== */
 .group-box {
-  background-color: var(--primary-very-low) !important;
-  border: 1px solid var(--primary-low);
+  background-color: var(--krew-tint-5) !important;
+  border: 1px solid var(--krew-tint-10);
   border-radius: var(--krew-border-radius);
 }
 
 .group-box:hover {
   border-color: var(--tertiary);
-  box-shadow: 0 0 10px var(--primary-low);
+  box-shadow: 0 0 10px var(--krew-tint-10);
 }
 
 /* ==================== 
@@ -565,7 +571,7 @@ select:focus,
 footer,
 .powered-by-discourse {
   background-color: transparent !important;
-  border-top: 1px solid var(--primary-low);
+  border-top: 1px solid var(--krew-tint-10);
   color: var(--primary-medium) !important;
 }
 
