@@ -286,14 +286,19 @@ nav.sidebar {
   padding: 0.75rem 1rem !important;
 }
 
-/* Post row - remove left border, keep subtle bottom */
+/* Post row - remove left border */
 .post__row {
   border-left: none !important;
 }
 
 .topic-post {
-  border-bottom: 1px solid var(--krew-border);
+  border-bottom: none !important;
   padding: 0.5rem 0;
+}
+
+/* Hide "Powered by Discourse" footer */
+.powered-by-discourse {
+  display: none !important;
 }
 
 /* System user avatar - make smaller */
